@@ -22,6 +22,22 @@ public class TripStorage {
         return trips;
     }
 
+    public Trip update(Trip trip) throws Exception {
+        Trip tripToUpdate = trips.stream()
+                .filter(t -> t.getId() == trip.getId())
+                .findFirst()
+                .orElseThrow(() -> new Exception("Trip not found(by id) " + trip.getName()));
+
+        tripToUpdate.setName(trip.getName());
+        tripToUpdate.setCountry(trip.getCountry());
+        tripToUpdate.setCity(trip.getCity());
+        tripToUpdate.setDateOfDeparture(trip.getDateOfDeparture());
+        tripToUpdate.setDateOfArrival(trip.getDateOfArrival());
+        tripToUpdate.setTravelTypeList(trip.getTravelTypeList());
+
+        return tripToUpdate;
+    }
+
     public void addStarterTrips() {
         Trip trip1 = new Trip("Canary dream", "Canary Islands", "Corralejo",
                 "20/02/2020", "28/02/2020", Arrays.asList("Plane", "car-rental"));
@@ -47,4 +63,5 @@ public class TripStorage {
                 "trips=" + trips +
                 '}';
     }
+
 }

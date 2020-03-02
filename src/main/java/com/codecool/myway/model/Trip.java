@@ -7,7 +7,8 @@ import java.util.List;
 
 @Component
 public class Trip {
-
+    private static int idCounter=0;
+    private int id = idCounter++;
     private String name;
     private String country;
     private String city;
@@ -27,6 +28,10 @@ public class Trip {
     }
 
     public Trip() {};
+
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -85,16 +90,17 @@ public class Trip {
     }
 
 
-
     @Override
     public String toString() {
         return "Trip{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", dateOfDeparture='" + dateOfDeparture + '\'' +
                 ", dateOfArrival='" + dateOfArrival + '\'' +
                 ", travelTypeList=" + travelTypeList +
+                ", rating=" + rating +
                 '}';
     }
 }
