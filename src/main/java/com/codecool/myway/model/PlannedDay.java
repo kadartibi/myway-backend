@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 public class PlannedDay {
     private static int idCounter = 0;
     private int id = idCounter++;
+    private int tripId;
     private LinkedHashMap<String, Double> activities = new LinkedHashMap<>();
 
     public void addToActivities(String activity, Double price) {
@@ -24,5 +25,13 @@ public class PlannedDay {
             sumOfCosts += activities.get(key);
         }
         return sumOfCosts.toString();
+    }
+
+    public int getTripId() {
+        return tripId;
+    }
+
+    public int getId() {
+        return id;
     }
 }
