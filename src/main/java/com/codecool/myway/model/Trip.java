@@ -1,23 +1,30 @@
 package com.codecool.myway.model;
 
+import com.codecool.myway.dao.DaysStorage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class Trip {
+    @Autowired
+    private DaysStorage daysStorage;
     private static int idCounter=0;
     private int id = idCounter++;
     private String name;
     private String country;
     private String city;
-    private String dateOfDeparture;
-    private String dateOfArrival;
+    private LocalDate dateOfDeparture;
+    private LocalDate dateOfArrival;
     private List<String> travelTypeList = new ArrayList<>();
     private int rating = 0;
 
-    public Trip(String name, String country, String city, String dateOfDeparture, String dateOfArrival, List<String> travelTypeList) {
+    public Trip(String name, String country, String city, LocalDate dateOfDeparture, LocalDate dateOfArrival, List<String> travelTypeList) {
         this.name = name;
         this.country = country;
         this.city = city;
@@ -57,19 +64,19 @@ public class Trip {
         this.city = city;
     }
 
-    public String getDateOfDeparture() {
+    public LocalDate getDateOfDeparture() {
         return dateOfDeparture;
     }
 
-    public void setDateOfDeparture(String dateOfDeparture) {
+    public void setDateOfDeparture(LocalDate dateOfDeparture) {
         this.dateOfDeparture = dateOfDeparture;
     }
 
-    public String getDateOfArrival() {
+    public LocalDate getDateOfArrival() {
         return dateOfArrival;
     }
 
-    public void setDateOfArrival(String dateOfArrival) {
+    public void setDateOfArrival(LocalDate dateOfArrival) {
         this.dateOfArrival = dateOfArrival;
     }
 
@@ -102,5 +109,18 @@ public class Trip {
                 ", travelTypeList=" + travelTypeList +
                 ", rating=" + rating +
                 '}';
+    }
+
+    public static List<LocalDate> getDatesBetween(LocalDate startDate, LocalDate endDate) {
+        return startDate.datesUntil(endDate)
+                .collect(Collectors.toList());
+    }
+
+    public void createPlannedDaysForTrip() {
+        List<LocalDate> plannedDays = getDatesBetween(dateOfDeparture, dateOfArrival);
+
+        for (LocalDate date : plannedDays) {
+            daysStorage.addToDaysList(new PlannedDay(date, id));
+        }
     }
 }

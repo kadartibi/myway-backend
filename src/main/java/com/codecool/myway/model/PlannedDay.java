@@ -2,14 +2,23 @@ package com.codecool.myway.model;
 
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.LinkedHashMap;
 
 @Component
 public class PlannedDay {
     private static int idCounter = 0;
     private int id = idCounter++;
+    private LocalDate date;
     private int tripId;
     private LinkedHashMap<String, Double> activities = new LinkedHashMap<>();
+
+    public PlannedDay(LocalDate date, int tripId) {
+        this.date = date;
+        this.tripId = tripId;
+    }
+
+    public PlannedDay() {}
 
     public void addToActivities(String activity, Double price) {
         activities.put(activity, price);
@@ -33,5 +42,19 @@ public class PlannedDay {
 
     public int getId() {
         return id;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    @Override
+    public String toString() {
+        return "PlannedDay{" +
+                "id=" + id +
+                ", date=" + date +
+                ", tripId=" + tripId +
+                ", activities=" + activities +
+                '}';
     }
 }

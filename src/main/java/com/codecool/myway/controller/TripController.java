@@ -1,5 +1,6 @@
 package com.codecool.myway.controller;
 
+import com.codecool.myway.dao.DaysStorage;
 import com.codecool.myway.dao.TripStorage;
 import com.codecool.myway.model.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,11 @@ public class TripController {
     @PostMapping("/add")
     public void addTrip(@RequestBody Trip trip) {
         tripStorage.addTrip(trip);
+        trip.createPlannedDaysForTrip();
     }
 
     @PutMapping("/update")
     public Trip updateTrip(@RequestBody Trip trip) throws Exception {
         return tripStorage.update(trip);
-
     }
 }

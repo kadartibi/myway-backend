@@ -9,14 +9,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/trip/{tripId}")
-public class PlannedDayController {
+public class PlannedDaysController {
 
     @Autowired
     private DaysStorage daysStorage;
 
     @GetMapping("/list-all-days")
     public List<PlannedDay> listDaysPlanned(@PathVariable int tripId) {
-        return daysStorage.getTripsPlannedDays(tripId);
+        return daysStorage.getPlannedDays(tripId);
     }
 
     @PostMapping("/add-activity-to-day/{dayId}")

@@ -15,7 +15,7 @@ public class DaysStorage {
         days.add(plannedDay);
     }
 
-    public List<PlannedDay> getTripsPlannedDays(int tripId) {
+    public List<PlannedDay> getPlannedDays(int tripId) {
         List<PlannedDay> plannedDaysForTrip = new ArrayList<>();
         for (PlannedDay plannedDay : days) {
             if (plannedDay.getTripId() == tripId) {
