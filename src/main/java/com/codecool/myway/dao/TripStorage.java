@@ -43,7 +43,7 @@ public class TripStorage {
                 LocalDate.parse("2020-02-20"), LocalDate.parse("2020-02-28"), Arrays.asList("Plane", "car-rental"));
 
         Trip trip2 = new Trip("Spanish days", "Spain", "Malaga",
-                LocalDate.parse("2020-02-05"), LocalDate.parse("2020-12-02"), Arrays.asList("Plane", "car-rental", "local train"));
+                LocalDate.parse("2020-02-05"), LocalDate.parse("2020-02-12"), Arrays.asList("Plane", "car-rental", "local train"));
 
         Trip trip3 = new Trip("Hungarian retro", "Hungary", "Gyula",
                 LocalDate.parse("2020-02-01"), LocalDate.parse("2020-02-05"), Collections.singletonList("car"));

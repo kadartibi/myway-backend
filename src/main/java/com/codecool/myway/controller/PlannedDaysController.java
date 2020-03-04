@@ -28,7 +28,6 @@ public class PlannedDaysController {
         Trip trip = tripStorage.getTrip(tripId);
         PlannedDay day = trip.getDayById(dayId);
         day.addToActivities(activity);
-        System.out.println(day.toString());
     }
 
 }
