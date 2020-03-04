@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/trip")
 public class TripController {
@@ -14,7 +15,6 @@ public class TripController {
     @Autowired
     private TripStorage tripStorage;
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/list")
     public List<Trip> tripsList() {
         return tripStorage.getTrips();
@@ -28,6 +28,5 @@ public class TripController {
     @PutMapping("/update")
     public Trip updateTrip(@RequestBody Trip trip) throws Exception {
         return tripStorage.update(trip);
-
     }
 }

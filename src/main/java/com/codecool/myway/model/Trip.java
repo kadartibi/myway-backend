@@ -2,8 +2,10 @@ package com.codecool.myway.model;
 
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class Trip {
@@ -12,21 +14,21 @@ public class Trip {
     private String name;
     private String country;
     private String city;
-    private String dateOfDeparture;
-    private String dateOfReturn;
+    private LocalDate dateOfDeparture;
+    private LocalDate dateOfReturn;
     private List<String> travelTypeList = new ArrayList<>();
-
-    private int totalCost = 0;
+    private List<PlannedDay> plannedDays = new ArrayList<>();
     private int rating = 0;
+    private int totalCost = 0;
 
-    public Trip(String name, String country, String city, String dateOfDeparture, String dateOfReturn, List<String> travelTypeList) {
+    public Trip(String name, String country, String city, LocalDate dateOfDeparture, LocalDate dateOfReturn, List<String> travelTypeList) {
         this.name = name;
         this.country = country;
         this.city = city;
         this.dateOfDeparture = dateOfDeparture;
         this.dateOfReturn = dateOfReturn;
         this.travelTypeList.addAll(travelTypeList);
-
+        createPlannedDaysForTrip();
     }
 
     public Trip() {};
@@ -59,19 +61,19 @@ public class Trip {
         this.city = city;
     }
 
-    public String getDateOfDeparture() {
+    public LocalDate getDateOfDeparture() {
         return dateOfDeparture;
     }
 
-    public void setDateOfDeparture(String dateOfDeparture) {
+    public void setDateOfDeparture(LocalDate dateOfDeparture) {
         this.dateOfDeparture = dateOfDeparture;
     }
 
-    public String getDateOfReturn() {
+    public LocalDate getDateOfReturn() {
         return dateOfReturn;
     }
 
-    public void setDateOfReturn(String dateOfReturn) {
+    public void setDateOfReturn(LocalDate dateOfReturn) {
         this.dateOfReturn = dateOfReturn;
     }
 
@@ -113,5 +115,30 @@ public class Trip {
                 ", totalCost=" + totalCost +
                 ", rating=" + rating +
                 '}';
+    }
+
+    private static List<LocalDate> getDatesBetween(LocalDate startDate, LocalDate endDate) {
+        return startDate.datesUntil(endDate)
+                .collect(Collectors.toList());
+    }
+
+    private void createPlannedDaysForTrip() {
+        List<LocalDate> plannedDaysDates = getDatesBetween(dateOfDeparture, dateOfReturn);
+        for (LocalDate date : plannedDaysDates) {
+            plannedDays.add(new PlannedDay(date, id));
+        }
+    }
+
+    public PlannedDay getDayById(int dayId) {
+        for (PlannedDay plannedDay : plannedDays) {
+            if (plannedDay.getId() == dayId) {
+                return plannedDay;
+            }
+        }
+        return null;
+    }
+
+    public List<PlannedDay> getPlannedDays() {
+        return plannedDays;
     }
 }

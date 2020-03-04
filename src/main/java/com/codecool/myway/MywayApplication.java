@@ -12,7 +12,7 @@ import javax.annotation.PostConstruct;
 @SpringBootApplication
 public class MywayApplication {
 
-    private static Logger LOGGER =  LoggerFactory.getLogger(MywayApplication.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(MywayApplication.class);
 
     @Autowired
     private TripStorage tripStorage;
@@ -23,8 +23,8 @@ public class MywayApplication {
 
     @PostConstruct
     public void addHardCodedTripsAfterInit() {
-            tripStorage.addStarterTrips();
-            LOGGER.info(tripStorage.getTrips().toString());
-        }
+        LOGGER.info(tripStorage.getTrips().toString());
+        tripStorage.addStarterTrips();
+    }
 
 }
