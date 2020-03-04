@@ -13,16 +13,18 @@ public class Trip {
     private String country;
     private String city;
     private String dateOfDeparture;
-    private String dateOfArrival;
+    private String dateOfReturn;
     private List<String> travelTypeList = new ArrayList<>();
+
+    private int totalCost = 0;
     private int rating = 0;
 
-    public Trip(String name, String country, String city, String dateOfDeparture, String dateOfArrival, List<String> travelTypeList) {
+    public Trip(String name, String country, String city, String dateOfDeparture, String dateOfReturn, List<String> travelTypeList) {
         this.name = name;
         this.country = country;
         this.city = city;
         this.dateOfDeparture = dateOfDeparture;
-        this.dateOfArrival = dateOfArrival;
+        this.dateOfReturn = dateOfReturn;
         this.travelTypeList.addAll(travelTypeList);
 
     }
@@ -65,12 +67,12 @@ public class Trip {
         this.dateOfDeparture = dateOfDeparture;
     }
 
-    public String getDateOfArrival() {
-        return dateOfArrival;
+    public String getDateOfReturn() {
+        return dateOfReturn;
     }
 
-    public void setDateOfArrival(String dateOfArrival) {
-        this.dateOfArrival = dateOfArrival;
+    public void setDateOfReturn(String dateOfReturn) {
+        this.dateOfReturn = dateOfReturn;
     }
 
     public List<String> getTravelTypeList() {
@@ -79,6 +81,14 @@ public class Trip {
 
     public void setTravelTypeList(List<String> travelTypeList) {
         this.travelTypeList = travelTypeList;
+    }
+
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
     }
 
     public void setRating(int rating) {
@@ -98,8 +108,9 @@ public class Trip {
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", dateOfDeparture='" + dateOfDeparture + '\'' +
-                ", dateOfArrival='" + dateOfArrival + '\'' +
+                ", dateOfReturn='" + dateOfReturn + '\'' +
                 ", travelTypeList=" + travelTypeList +
+                ", totalCost=" + totalCost +
                 ", rating=" + rating +
                 '}';
     }

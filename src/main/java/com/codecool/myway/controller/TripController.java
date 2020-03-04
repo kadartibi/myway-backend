@@ -14,6 +14,7 @@ public class TripController {
     @Autowired
     private TripStorage tripStorage;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/list")
     public List<Trip> tripsList() {
         return tripStorage.getTrips();

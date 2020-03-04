@@ -32,7 +32,7 @@ public class TripStorage {
         tripToUpdate.setCountry(trip.getCountry());
         tripToUpdate.setCity(trip.getCity());
         tripToUpdate.setDateOfDeparture(trip.getDateOfDeparture());
-        tripToUpdate.setDateOfArrival(trip.getDateOfArrival());
+        tripToUpdate.setDateOfReturn(trip.getDateOfReturn());
         tripToUpdate.setTravelTypeList(trip.getTravelTypeList());
 
         return tripToUpdate;
