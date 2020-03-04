@@ -3,7 +3,8 @@ package com.codecool.myway.model;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class PlannedDay {
@@ -11,7 +12,7 @@ public class PlannedDay {
     private int id = idCounter++;
     private LocalDate date;
     private int tripId;
-    private LinkedHashMap<String, Double> activities = new LinkedHashMap<>();
+    private List<Activity> activities = new ArrayList<>();
 
     public PlannedDay(LocalDate date, int tripId) {
         this.date = date;
@@ -20,18 +21,18 @@ public class PlannedDay {
 
     public PlannedDay() {}
 
-    public void addToActivities(String activity, Double price) {
-        activities.put(activity, price);
+    public void addToActivities(Activity activity) {
+        activities.add(activity);
     }
 
-    public LinkedHashMap<String, Double> getActivities() {
+    public List<Activity> getActivities() {
         return activities;
     }
 
     public String getTotalCost() {
         Double sumOfCosts = 0.0;
-        for (String key : activities.keySet()) {
-            sumOfCosts += activities.get(key);
+        for (Activity activity : activities) {
+            sumOfCosts += activity.getPrice();
         }
         return sumOfCosts.toString();
     }

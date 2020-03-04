@@ -1,10 +1,7 @@
 package com.codecool.myway.model;
 
-import com.codecool.myway.dao.DaysStorage;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +9,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class Trip {
-    @Autowired
-    private DaysStorage daysStorage;
+
     private static int idCounter=0;
     private int id = idCounter++;
     private String name;
@@ -22,6 +18,7 @@ public class Trip {
     private LocalDate dateOfDeparture;
     private LocalDate dateOfArrival;
     private List<String> travelTypeList = new ArrayList<>();
+    private List<PlannedDay> plannedDays = new ArrayList<>();
     private int rating = 0;
 
     public Trip(String name, String country, String city, LocalDate dateOfDeparture, LocalDate dateOfArrival, List<String> travelTypeList) {
@@ -31,7 +28,7 @@ public class Trip {
         this.dateOfDeparture = dateOfDeparture;
         this.dateOfArrival = dateOfArrival;
         this.travelTypeList.addAll(travelTypeList);
-
+        createPlannedDaysForTrip();
     }
 
     public Trip() {};
@@ -117,10 +114,22 @@ public class Trip {
     }
 
     public void createPlannedDaysForTrip() {
-        List<LocalDate> plannedDays = getDatesBetween(dateOfDeparture, dateOfArrival);
-
-        for (LocalDate date : plannedDays) {
-            daysStorage.addToDaysList(new PlannedDay(date, id));
+        List<LocalDate> plannedDaysDates = getDatesBetween(dateOfDeparture, dateOfArrival);
+        for (LocalDate date : plannedDaysDates) {
+            plannedDays.add(new PlannedDay(date, id));
         }
+    }
+
+    public PlannedDay getDayById(int dayId) {
+        for (PlannedDay plannedDay : plannedDays) {
+            if (plannedDay.getId() == dayId) {
+                return plannedDay;
+            }
+        }
+        return null;
+    }
+
+    public List<PlannedDay> getPlannedDays() {
+        return plannedDays;
     }
 }

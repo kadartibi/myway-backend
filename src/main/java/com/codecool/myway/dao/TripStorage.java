@@ -14,7 +14,6 @@ public class TripStorage {
 
     private List<Trip> trips = new LinkedList<>();
 
-
     public void addTrip(Trip trip) {
         this.trips.add(trip);
     }
@@ -41,7 +40,7 @@ public class TripStorage {
 
     public void addStarterTrips() {
         Trip trip1 = new Trip("Canary dream", "Canary Islands", "Corralejo",
-                LocalDate.parse("2020-20-02"), LocalDate.parse("2020-02-28"), Arrays.asList("Plane", "car-rental"));
+                LocalDate.parse("2020-02-20"), LocalDate.parse("2020-02-28"), Arrays.asList("Plane", "car-rental"));
 
         Trip trip2 = new Trip("Spanish days", "Spain", "Malaga",
                 LocalDate.parse("2020-02-05"), LocalDate.parse("2020-12-02"), Arrays.asList("Plane", "car-rental", "local train"));
@@ -65,4 +64,12 @@ public class TripStorage {
                 '}';
     }
 
+    public Trip getTrip(int tripId) {
+        for (Trip trip : trips) {
+            if (trip.getId() == tripId) {
+                return trip;
+            }
+        }
+        return null;
+    }
 }
