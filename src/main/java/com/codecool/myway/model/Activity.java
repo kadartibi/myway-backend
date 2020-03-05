@@ -2,6 +2,8 @@ package com.codecool.myway.model;
 
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 public class Activity {
     private String description;
@@ -29,5 +31,19 @@ public class Activity {
                 "description='" + description + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Activity activity = (Activity) o;
+        return Objects.equals(description, activity.description) &&
+                Objects.equals(price, activity.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, price);
     }
 }
