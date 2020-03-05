@@ -33,6 +33,7 @@ public class Trip {
 
     public Trip() {};
 
+
     public int getId() {
         return id;
     }
@@ -109,13 +110,15 @@ public class Trip {
                 ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
-                ", dateOfDeparture='" + dateOfDeparture + '\'' +
-                ", dateOfReturn='" + dateOfReturn + '\'' +
+                ", dateOfDeparture=" + dateOfDeparture +
+                ", dateOfReturn=" + dateOfReturn +
                 ", travelTypeList=" + travelTypeList +
-                ", totalCost=" + totalCost +
+                ", plannedDays=" + plannedDays +
                 ", rating=" + rating +
+                ", totalCost=" + totalCost +
                 '}';
     }
+
 
     private static List<LocalDate> getDatesBetween(LocalDate startDate, LocalDate endDate) {
         return startDate.datesUntil(endDate)
