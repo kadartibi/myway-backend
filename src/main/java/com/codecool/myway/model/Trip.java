@@ -122,11 +122,12 @@ public class Trip {
                 .collect(Collectors.toList());
     }
 
-    private void createPlannedDaysForTrip() {
+    public void createPlannedDaysForTrip() {
         List<LocalDate> plannedDaysDates = getDatesBetween(dateOfDeparture, dateOfReturn);
         for (LocalDate date : plannedDaysDates) {
             plannedDays.add(new PlannedDay(date, id));
         }
+        plannedDays.add(new PlannedDay(dateOfReturn,id));
     }
 
     public PlannedDay getDayById(int dayId) {
