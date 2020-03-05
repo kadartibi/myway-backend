@@ -29,6 +29,10 @@ public class PlannedDay {
         return activities;
     }
 
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
+
     public String getTotalCost() {
         Double sumOfCosts = 0.0;
         for (Activity activity : activities) {
@@ -47,6 +51,11 @@ public class PlannedDay {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public List<Activity> deleteFromList(Activity activityToDelete) {
+        activities.remove(activityToDelete);
+        return activities;
     }
 
     @Override

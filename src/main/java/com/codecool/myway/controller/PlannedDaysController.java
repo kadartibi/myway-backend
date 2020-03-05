@@ -24,10 +24,17 @@ public class PlannedDaysController {
     }
 
     @PostMapping("/add-activity-to-day/{dayId}")
-    public void addActivityToDay(@PathVariable int tripId, @PathVariable int dayId, @RequestBody Activity activity) {
+    public PlannedDay addActivityToDay(@PathVariable int tripId, @PathVariable int dayId, @RequestBody Activity activity) {
         Trip trip = tripStorage.getTrip(tripId);
         PlannedDay day = trip.getDayById(dayId);
         day.addToActivities(activity);
+        return day;
     }
 
+    @PostMapping("/update-activities/{dayId}")
+    public List<Activity> updateActivities(@PathVariable int tripId, @PathVariable int dayId, @RequestBody Activity activity) {
+        Trip trip = tripStorage.getTrip(tripId);
+        PlannedDay day = trip.getDayById(dayId);
+        return day.deleteFromList(activity);
+    }
 }
