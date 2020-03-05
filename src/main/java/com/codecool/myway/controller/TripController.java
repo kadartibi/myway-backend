@@ -22,6 +22,7 @@ public class TripController {
 
     @PostMapping("/add")
     public void addTrip(@RequestBody Trip trip) {
+        trip.createPlannedDaysForTrip();
         tripStorage.addTrip(trip);
     }
 

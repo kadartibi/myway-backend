@@ -1,5 +1,7 @@
 package com.codecool.myway.dao;
 
+import com.codecool.myway.model.Activity;
+import com.codecool.myway.model.PlannedDay;
 import com.codecool.myway.model.Trip;
 import org.springframework.stereotype.Component;
 
@@ -39,6 +41,7 @@ public class TripStorage {
     }
 
     public void addStarterTrips() {
+
         Trip trip1 = new Trip("Canary dream", "Canary Islands", "Corralejo",
                 LocalDate.parse("2020-02-20"), LocalDate.parse("2020-02-28"), Arrays.asList("Plane", "car-rental"));
 
@@ -53,6 +56,12 @@ public class TripStorage {
 
         Trip trip5 = new Trip("German cold", "Germany", "Berlin",
                 LocalDate.parse("2020-01-15"), LocalDate.parse("2020-01-22"), Arrays.asList("Plane", "car-rental"));
+
+
+        Activity activity1 = new Activity("museum", (double) 20);
+
+        trip1.getDayById(0).addToActivities(activity1);
+
 
         trips.addAll(Arrays.asList(trip1, trip2, trip3, trip4, trip5));
     }

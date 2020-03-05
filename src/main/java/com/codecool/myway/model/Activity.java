@@ -7,6 +7,14 @@ public class Activity {
     private String description;
     private Double price;
 
+    public Activity(String description, Double price) {
+        this.description = description;
+        this.price = price;
+    }
+
+    public Activity() {
+    }
+
     public String getDescription() {
         return description;
     }
