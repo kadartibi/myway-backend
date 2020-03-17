@@ -1,15 +1,9 @@
 package com.codecool.myway.controller;
-
 import com.codecool.myway.dao.TripStorage;
 import com.codecool.myway.model.Trip;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -34,4 +28,6 @@ public class TripController {
     public Trip updateTrip(@RequestBody Trip trip) throws Exception {
         return tripStorage.update(trip);
     }
+
+
 }
