@@ -103,9 +103,10 @@ public class MywayApplication {
 
             List<TripEntity> trips = Arrays.asList(trip1, trip2, trip3, trip4, trip5, trip6);
             for (TripEntity trip: trips) {
-                trip.setPlannedDays(trip.createPlannedDaysForTrip());
+                trip.createPlannedDaysForTrip();
             }
             tripRepository.saveAll(trips);
+
         };
 
     }

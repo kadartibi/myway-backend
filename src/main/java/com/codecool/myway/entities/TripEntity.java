@@ -3,6 +3,8 @@ package com.codecool.myway.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,17 +23,22 @@ public class TripEntity {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "name is mandatory")
     private String name;
 
     @Column(nullable = false)
+    @NotBlank(message = "country is mandatory")
     private String country;
 
     private String city;
 
+    @NotNull(message = "date of departure is mandatory")
     @Column(nullable = false)
     private LocalDate dateOfDeparture;
 
     @Column(nullable = false)
+
+    @NotNull(message = "date of return is mandatory")
     private LocalDate dateOfReturn;
 
     @Singular
@@ -48,13 +55,13 @@ public class TripEntity {
 
     private int totalCost;
 
-    public List<PlannedDayEntity> createPlannedDaysForTrip() {
+    public void createPlannedDaysForTrip() {
         List<PlannedDayEntity> plannedDayEntitiesPreparation = new ArrayList<>();
         List<LocalDate> plannedDaysDates = dateOfDeparture.datesUntil(dateOfReturn).collect(Collectors.toList());
         for (LocalDate date : plannedDaysDates) {
             plannedDayEntitiesPreparation.add(PlannedDayEntity.builder().date(date).trip(this).build());
         }
         plannedDayEntitiesPreparation.add(PlannedDayEntity.builder().date(dateOfReturn).trip(this).build());
-        return plannedDayEntitiesPreparation;
+        this.setPlannedDays(plannedDayEntitiesPreparation);
     }
 }
