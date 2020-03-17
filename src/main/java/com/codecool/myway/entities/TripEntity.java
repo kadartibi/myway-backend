@@ -3,6 +3,9 @@ package com.codecool.myway.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -18,15 +21,20 @@ public class TripEntity {
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank(message = "name is mandatory")
     private String name;
 
     @Column(nullable = false)
+    @NotBlank(message = "country is mandatory")
     private String country;
 
     private String city;
 
+    @NotNull(message = "date of departure is mandatory")
     private LocalDate dateOfDeparture;
 
+
+    @NotNull(message = "date of return is mandatory")
     private LocalDate dateOfReturn;
 
     @Singular

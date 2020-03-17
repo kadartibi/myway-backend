@@ -1,10 +1,15 @@
 package com.codecool.myway.controller;
 
 import com.codecool.myway.dao.TripStorage;
+import com.codecool.myway.entities.TripEntity;
 import com.codecool.myway.model.Trip;
+import com.codecool.myway.repositories.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin
@@ -15,15 +20,18 @@ public class TripController {
     @Autowired
     private TripStorage tripStorage;
 
+    @Autowired
+    private TripRepository tripRepository;
+
     @GetMapping("/list")
     public List<Trip> tripsList() {
         return tripStorage.getTrips();
     }
 
     @PostMapping("/add")
-    public void addTrip(@RequestBody Trip trip) {
-        trip.createPlannedDaysForTrip();
-        tripStorage.addTrip(trip);
+    public void addTrip(@Valid @RequestBody TripEntity trip) {
+        tripRepository.save(trip);
+
     }
 
     @PutMapping("/update")

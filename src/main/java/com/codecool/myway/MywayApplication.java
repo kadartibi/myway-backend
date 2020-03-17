@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 
 @SpringBootApplication
 public class MywayApplication {
@@ -44,6 +45,8 @@ public class MywayApplication {
                     .country("Spain")
                     .travelType("Bicycle")
                     .travelType("Train")
+                    .dateOfDeparture(LocalDate.of(2015,12,12))
+                    .dateOfReturn(LocalDate.of(2016,1,5))
                     .build();
 
             tripRepository.save(trip1);
