@@ -23,8 +23,8 @@ public class TripController {
     private TripRepository tripRepository;
 
     @GetMapping("/list")
-    public List<TripEntity> tripsList() {
-        return tripRepository.findAll();
+    public List<Trip> tripsList() {
+        return tripStorage.getTrips();
     }
 
     @PostMapping("/add")
