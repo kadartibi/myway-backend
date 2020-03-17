@@ -27,6 +27,6 @@ public class ActivityEntity {
     private Double price;
 
     @ManyToOne
-    private plannedDayEntity plannedDay;
+    private PlannedDayEntity plannedDay;
 
 }
