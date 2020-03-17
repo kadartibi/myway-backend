@@ -1,6 +1,7 @@
 package com.codecool.myway;
 
 import com.codecool.myway.dao.TripStorage;
+import com.codecool.myway.entities.TravelTypes;
 import com.codecool.myway.entities.TripEntity;
 import com.codecool.myway.repositories.TripRepository;
 import org.slf4j.Logger;
@@ -41,6 +42,8 @@ public class MywayApplication {
             TripEntity trip1 = TripEntity.builder()
                     .name("Spanish beaches")
                     .country("Spain")
+                    .travelType("Bicycle")
+                    .travelType("Train")
                     .build();
 
             tripRepository.save(trip1);

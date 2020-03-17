@@ -28,13 +28,12 @@ public class TripEntity {
     private LocalDate dateOfDeparture;
 
     private LocalDate dateOfReturn;
-//
-//    @ElementCollection
-//    @Singular
-//    @EqualsAndHashCode.Exclude
-//    @Enumerated(EnumType.STRING)
-//    private List<TravelTypes> travelTypes;
+
+    @Singular
+    @EqualsAndHashCode.Exclude
     @ElementCollection
+    private Set<String> travelTypes;
+
     @Singular
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "trip", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})

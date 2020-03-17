@@ -23,7 +23,6 @@ public class plannedDayEntity {
     @ManyToOne
     private TripEntity trip;
 
-    @ElementCollection
     @Singular
     @OneToMany(mappedBy = "plannedDay", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
