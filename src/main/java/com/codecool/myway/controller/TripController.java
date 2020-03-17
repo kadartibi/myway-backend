@@ -34,19 +34,4 @@ public class TripController {
     public Trip updateTrip(@RequestBody Trip trip) throws Exception {
         return tripStorage.update(trip);
     }
-
-//
-//    private List<LocalDate> getDatesBetween(LocalDate startDate, LocalDate endDate) {
-//    return startDate.datesUntil(endDate)
-//            .collect(Collectors.toList());
-//    }
-//
-//    public void createPlannedDaysForTrip() {
-//        List<LocalDate> plannedDaysDates = getDatesBetween(dateOfDeparture, dateOfReturn);
-//        for (LocalDate date : plannedDaysDates) {
-//            plannedDays.add(new PlannedDayEntity(date, id));
-//        }
-//        plannedDays.add(new PlannedDayEntity(dateOfReturn,id));
-//    }
-
 }
