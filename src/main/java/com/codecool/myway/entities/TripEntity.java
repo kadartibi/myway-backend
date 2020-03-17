@@ -37,7 +37,7 @@ public class TripEntity {
     @Singular
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "trip", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Set<plannedDayEntity> plannedDays;
+    private Set<PlannedDayEntity> plannedDays;
 
     private int rating;
 
