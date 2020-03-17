@@ -1,6 +1,5 @@
 package com.codecool.myway.controller;
 
-import com.codecool.myway.repositories.PlannedDayRepository;
 import com.codecool.myway.repositories.TripRepository;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @ActiveProfiles("test")
-class PlannedDaysControllerTest {
-
-    @Autowired
-    private PlannedDayRepository plannedDayRepository;
+class TripControllerTest {
 
     @Autowired
     private TripRepository tripRepository;
