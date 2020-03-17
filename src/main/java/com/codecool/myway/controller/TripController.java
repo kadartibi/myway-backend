@@ -5,12 +5,11 @@ import com.codecool.myway.entities.TripEntity;
 import com.codecool.myway.model.Trip;
 import com.codecool.myway.repositories.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+
 
 @CrossOrigin
 @RestController

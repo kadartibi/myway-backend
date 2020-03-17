@@ -11,7 +11,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Builder
-public class plannedDayEntity {
+public class PlannedDayEntity {
 
     @Id
     @GeneratedValue
