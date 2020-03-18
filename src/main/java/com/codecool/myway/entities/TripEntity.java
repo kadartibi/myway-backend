@@ -1,5 +1,7 @@
 package com.codecool.myway.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -37,11 +39,14 @@ public class TripEntity {
     @Singular
     @EqualsAndHashCode.Exclude
     @ElementCollection
+    @ToString.Exclude
     private Set<String> travelTypes;
 
     @Singular
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "trip", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @ToString.Exclude
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private List<PlannedDayEntity> plannedDays;
 
     private int rating;

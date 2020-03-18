@@ -1,7 +1,10 @@
 package com.codecool.myway.controller;
 
 import com.codecool.myway.dao.TripStorage;
+import com.codecool.myway.entities.TripEntity;
 import com.codecool.myway.model.Trip;
+import com.codecool.myway.repositories.TripRepository;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -19,9 +22,12 @@ public class TripController {
     @Autowired
     private TripStorage tripStorage;
 
+    @Autowired
+    private TripRepository tripRepository;
+
     @GetMapping("/list")
-    public List<Trip> tripsList() {
-        return tripStorage.getTrips();
+    public List<TripEntity> tripsList() {
+        return tripRepository.findAll();
     }
 
     @PostMapping("/add")

@@ -4,6 +4,7 @@ import com.codecool.myway.dao.TripStorage;
 import com.codecool.myway.entities.TravelTypes;
 import com.codecool.myway.entities.TripEntity;
 import com.codecool.myway.repositories.TripRepository;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,9 @@ import org.springframework.context.annotation.Profile;
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @SpringBootApplication
 public class MywayApplication {
@@ -41,12 +44,13 @@ public class MywayApplication {
     @Bean
     @Profile("production")
     public CommandLineRunner init() {
+        Set<String> travelTypes = new HashSet<>();
+        travelTypes.add("Bicycle");
         return args -> {
             TripEntity trip1 = TripEntity.builder()
                     .name("Spanish beaches")
                     .country("Spain")
                     .travelType("Bicycle")
-                    .travelType("Train")
                     .rating(139)
                     .dateOfDeparture(LocalDate.of(2019, 6, 20))
                     .dateOfReturn(LocalDate.of(2019, 6, 30))
