@@ -25,7 +25,7 @@ public class TripController {
 
     @GetMapping("/list")
     public List<TripEntity> tripsList() {
-        return tripRepository.findAll();
+        return tripRepository.findTop5ByOrderByRatingDesc();
     }
 
     @PostMapping("/add")

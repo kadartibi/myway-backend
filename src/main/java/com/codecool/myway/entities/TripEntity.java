@@ -45,8 +45,8 @@ public class TripEntity {
 
     @Singular
     @EqualsAndHashCode.Exclude
-    @ElementCollection
     @ToString.Exclude
+    @ElementCollection
     private Set<String> travelTypes;
 
     @Singular

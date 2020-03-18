@@ -24,6 +24,7 @@ public class PlannedDayEntity {
     private LocalDate date;
 
     @ManyToOne
+    @EqualsAndHashCode.Exclude
     private TripEntity trip;
 
     @Singular
