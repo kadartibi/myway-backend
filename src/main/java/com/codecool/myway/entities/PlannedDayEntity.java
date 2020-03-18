@@ -21,9 +21,11 @@ public class PlannedDayEntity {
     private LocalDate date;
 
     @ManyToOne
+    @EqualsAndHashCode.Exclude
     private TripEntity trip;
 
     @Singular
+    @ToString.Exclude
     @OneToMany(mappedBy = "plannedDay", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     private Set<ActivityEntity> activities;

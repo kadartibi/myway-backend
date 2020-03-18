@@ -106,6 +106,7 @@ public class MywayApplication {
                 trip.createPlannedDaysForTrip();
             }
             tripRepository.saveAll(trips);
+            System.out.println(tripRepository.findAll());
 
         };
 

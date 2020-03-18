@@ -43,10 +43,12 @@ public class TripEntity {
 
     @Singular
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     @ElementCollection
     private Set<String> travelTypes;
 
     @Singular
+    @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "trip", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<PlannedDayEntity> plannedDays;
