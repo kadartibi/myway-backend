@@ -4,15 +4,13 @@ import com.codecool.myway.dao.TripStorage;
 import com.codecool.myway.entities.TripEntity;
 import com.codecool.myway.model.Trip;
 import com.codecool.myway.repositories.TripRepository;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.time.LocalDate;
 
 @CrossOrigin
 @RestController
@@ -31,9 +29,9 @@ public class TripController {
     }
 
     @PostMapping("/add")
-    public void addTrip(@RequestBody Trip trip) {
-        trip.createPlannedDaysForTrip();
-        tripStorage.addTrip(trip);
+    public void addTrip(@Valid @RequestBody TripEntity trip) {
+        // trip.createPlannedDaysForTrip();
+        tripRepository.save(trip);
     }
 
     @PutMapping("/update")
