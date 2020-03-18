@@ -25,12 +25,12 @@ public class PlannedDayEntity {
 
     @ManyToOne
     @EqualsAndHashCode.Exclude
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private TripEntity trip;
 
     @Singular
     @OneToMany(mappedBy = "plannedDay", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private Set<ActivityEntity> activities;
 }

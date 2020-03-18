@@ -1,5 +1,7 @@
 package com.codecool.myway.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -25,6 +27,8 @@ public class ActivityEntity {
 
     @ManyToOne
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private PlannedDayEntity plannedDay;
 
 }
