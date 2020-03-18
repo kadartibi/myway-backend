@@ -28,7 +28,6 @@ public class PlannedDayEntity {
     private TripEntity trip;
 
     @Singular
-    @ToString.Exclude
     @OneToMany(mappedBy = "plannedDay", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude

@@ -47,11 +47,9 @@ public class TripEntity {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @ElementCollection
-    @ToString.Exclude
     private Set<String> travelTypes;
 
     @Singular
-    @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "trip", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @ToString.Exclude
