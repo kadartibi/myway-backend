@@ -25,22 +25,21 @@ public class TripEntity {
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank(message = "name is mandatory")
+    @NotBlank(message = "Name is mandatory")
     private String name;
 
     @Column(nullable = false)
-    @NotBlank(message = "country is mandatory")
+    @NotBlank(message = "Country is mandatory")
     private String country;
 
     private String city;
 
-    @NotNull(message = "date of departure is mandatory")
+    @NotNull(message = "Date of departure is mandatory")
     @Column(nullable = false)
     private LocalDate dateOfDeparture;
 
     @Column(nullable = false)
-
-    @NotNull(message = "date of return is mandatory")
+    @NotNull(message = "Date of return is mandatory")
     private LocalDate dateOfReturn;
 
     @Singular
@@ -57,8 +56,6 @@ public class TripEntity {
     private List<PlannedDayEntity> plannedDays;
 
     private int rating;
-
-    private int totalCost;
 
     public void createPlannedDaysForTrip() {
         List<PlannedDayEntity> plannedDayEntitiesPreparation = new ArrayList<>();
