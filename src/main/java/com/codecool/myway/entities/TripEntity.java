@@ -39,7 +39,6 @@ public class TripEntity {
     private LocalDate dateOfDeparture;
 
     @Column(nullable = false)
-
     @NotNull(message = "date of return is mandatory")
     private LocalDate dateOfReturn;
 

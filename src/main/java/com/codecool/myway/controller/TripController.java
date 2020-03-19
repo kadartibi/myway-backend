@@ -28,9 +28,14 @@ public class TripController {
         return tripRepository.findTop5ByOrderByRatingDesc();
     }
 
+    @GetMapping("/in-progress")
+    public List<TripEntity> tripsInProgress() {
+        return tripRepository.findAllByOrderByIdDesc();
+    }
+
     @PostMapping("/add")
     public void addTrip(@Valid @RequestBody TripEntity trip) {
-        // trip.createPlannedDaysForTrip();
+        trip.createPlannedDaysForTrip();
         tripRepository.save(trip);
     }
 
