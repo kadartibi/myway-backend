@@ -25,28 +25,28 @@ public class TripEntity {
     private Long id;
 
     @Column(nullable = false)
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "Name")
     private String name;
 
     @Column(nullable = false)
-    @NotBlank(message = "Country is mandatory")
+    @NotBlank(message = "Country")
     private String country;
 
     private String city;
 
-    @NotNull(message = "Date of departure is mandatory")
+    @NotNull(message = "Date of departure")
     @Column(nullable = false)
     private LocalDate dateOfDeparture;
 
     @Column(nullable = false)
-    @NotNull(message = "Date of return is mandatory")
+    @NotNull(message = "Date of return")
     private LocalDate dateOfReturn;
 
     @Singular
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     @ElementCollection
-    private Set<String> travelTypes;
+    private Set<String> travelTypes;                                                                                                                                                                                         ;
 
     @Singular
     @EqualsAndHashCode.Exclude

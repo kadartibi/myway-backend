@@ -110,7 +110,6 @@ public class MywayApplication {
                 trip.createPlannedDaysForTrip();
             }
             tripRepository.saveAll(trips);
-
         };
 
     }
