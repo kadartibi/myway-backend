@@ -111,7 +111,7 @@ public class MywayApplication {
             }
             tripRepository.saveAll(trips);
             System.out.println(tripRepository.findAll());
-            System.out.println(tripRepository.findAllByOrderByIdDesc());
+
         };
 
     }
