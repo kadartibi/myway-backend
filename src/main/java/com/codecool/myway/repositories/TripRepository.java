@@ -9,4 +9,5 @@ public interface TripRepository extends JpaRepository<TripEntity, Long> {
 
     List<TripEntity> findTop5ByOrderByRatingDesc();
 
+    List<TripEntity> findAllByOrderByIdDesc();
 }

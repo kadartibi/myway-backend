@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.time.LocalDate;
 
 @CrossOrigin
 @RestController
@@ -28,9 +26,14 @@ public class TripController {
         return tripRepository.findTop5ByOrderByRatingDesc();
     }
 
+    @GetMapping("/in-progress")
+    public List<TripEntity> tripsInProgress() {
+        return tripRepository.findAllByOrderByIdDesc();
+    }
+
     @PostMapping("/add")
     public void addTrip(@Valid @RequestBody TripEntity trip) {
-        // trip.createPlannedDaysForTrip();
+        trip.createPlannedDaysForTrip();
         tripRepository.save(trip);
     }
 
