@@ -26,8 +26,8 @@ public class MywayApplication {
 
     private static Logger LOGGER = LoggerFactory.getLogger(MywayApplication.class);
 
-    @Autowired
-    private TripStorage tripStorage;
+//    @Autowired
+//    private TripStorage tripStorage;
 
     @Autowired
     private TripRepository tripRepository;
@@ -36,10 +36,10 @@ public class MywayApplication {
         SpringApplication.run(MywayApplication.class, args);
     }
 
-    @PostConstruct
-    public void addHardCodedTripsAfterInit() {
-        tripStorage.addStarterTrips();
-    }
+//    @PostConstruct
+//    public void addHardCodedTripsAfterInit() {
+//        tripStorage.addStarterTrips();
+//    }
 
     @Bean
     @Profile("production")
@@ -95,7 +95,7 @@ public class MywayApplication {
                     .build();
 
             TripEntity trip6 = TripEntity.builder()
-                    .name("Chinese everywhere")
+                    .name("Chinese culture")
                     .country("China")
                     .travelType("Bus")
                     .travelType("Train")
@@ -110,8 +110,6 @@ public class MywayApplication {
                 trip.createPlannedDaysForTrip();
             }
             tripRepository.saveAll(trips);
-
         };
-
     }
 }

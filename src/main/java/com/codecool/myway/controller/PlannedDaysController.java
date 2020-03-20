@@ -44,9 +44,9 @@ public class PlannedDaysController {
     }
 
     @PostMapping("/delete-from-activities/{dayId}")
-    public Set<ActivityEntity> updateActivities(@PathVariable Long dayId, @RequestBody ActivityEntity activity) {
+    public PlannedDayEntity updateActivities(@PathVariable Long dayId, @RequestBody ActivityEntity activity) {
         activityRepository.deleteById(activity.getId());
         Optional<PlannedDayEntity> plannedDay = plannedDayRepository.findById(dayId);
-        return plannedDay.map(PlannedDayEntity::getActivities).orElse(null);
+        return plannedDay.orElse(null);
     }
 }
