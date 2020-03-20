@@ -3,11 +3,14 @@ package com.codecool.myway.entities;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Data
@@ -21,8 +24,10 @@ public class ActivityEntity {
     @GeneratedValue
     private Long id;
 
+    @NotBlank(message="Description")
     private String description;
 
+    @NotNull(message = "Price")
     private Double price;
 
     @ManyToOne

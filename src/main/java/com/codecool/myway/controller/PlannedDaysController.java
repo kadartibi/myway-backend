@@ -9,6 +9,7 @@ import com.codecool.myway.repositories.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -35,7 +36,7 @@ public class PlannedDaysController {
     }
 
     @PostMapping("/add-activity-to-day/{dayId}")
-    public PlannedDayEntity addActivityToDay(@PathVariable Long dayId, @RequestBody ActivityEntity activity) {
+    public PlannedDayEntity addActivityToDay(@PathVariable Long dayId,@Valid @RequestBody ActivityEntity activity) {
         Optional<PlannedDayEntity> plannedDay = plannedDayRepository.findById(dayId);
         plannedDay.ifPresent(activity::setPlannedDay);
         activityRepository.save(activity);
