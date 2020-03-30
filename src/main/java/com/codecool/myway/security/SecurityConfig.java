@@ -53,7 +53,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/auth/login").permitAll()
-                .antMatchers("/protected-hello").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
     }
