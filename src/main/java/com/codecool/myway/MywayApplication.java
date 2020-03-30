@@ -1,10 +1,7 @@
 package com.codecool.myway;
 
-import com.codecool.myway.dao.TripStorage;
-import com.codecool.myway.entities.TravelTypes;
 import com.codecool.myway.entities.TripEntity;
 import com.codecool.myway.repositories.TripRepository;
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
-import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,9 +22,6 @@ public class MywayApplication {
 
     private static Logger LOGGER = LoggerFactory.getLogger(MywayApplication.class);
 
-//    @Autowired
-//    private TripStorage tripStorage;
-
     @Autowired
     private TripRepository tripRepository;
 
@@ -36,10 +29,6 @@ public class MywayApplication {
         SpringApplication.run(MywayApplication.class, args);
     }
 
-//    @PostConstruct
-//    public void addHardCodedTripsAfterInit() {
-//        tripStorage.addStarterTrips();
-//    }
 
     @Bean
     @Profile("production")
