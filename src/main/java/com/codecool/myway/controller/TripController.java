@@ -16,7 +16,7 @@ public class TripController {
     @Autowired
     private TripRepository tripRepository;
 
-    @GetMapping("/list")
+    @GetMapping("/recommended")
     public List<TripEntity> tripsList() {
         return tripRepository.findTop5ByOrderByRatingDesc();
     }

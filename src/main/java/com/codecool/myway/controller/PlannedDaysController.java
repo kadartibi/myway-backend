@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-
 
 @CrossOrigin
 @RestController
@@ -31,6 +29,7 @@ public class PlannedDaysController {
 
     @GetMapping("/list-all-days")
     public List<PlannedDayEntity> listDaysPlanned(@PathVariable Long tripId) {
+        //System.out.println(plannedDayRepository.listPlannedDaysForTrip(tripId));
         Optional<TripEntity> trip = tripRepository.findById(tripId);
         return trip.map(TripEntity::getPlannedDays).orElse(null);
     }

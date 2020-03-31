@@ -52,7 +52,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/auth/login").permitAll()
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers("/trip/recommended").permitAll()
+                .antMatchers("/trip/in-progress").authenticated()
+                .antMatchers("/trip/add").authenticated()
+                .antMatchers("/trip/update").authenticated()
+                .antMatchers("/trip/{tripId}/list-all-days").permitAll()
+                .antMatchers("/trip/{tripId}/add-activity-to-day/{dayId}").authenticated()
+                .antMatchers("/trip/{tripId}/delete-from-activities/{dayId}").authenticated()
                 .anyRequest().permitAll();
 
     }

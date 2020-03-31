@@ -22,14 +22,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        TripUser secuUser = tripUserRepository
+        TripUser tripUser = tripUserRepository
                 .findById(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 
         return new User(
-                secuUser.getUserName(),
-                secuUser.getHashedPassword(),
-                secuUser.getRoles()
+                tripUser.getUserName(),
+                tripUser.getHashedPassword(),
+                tripUser.getRoles()
                         .stream()
                         .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                         .collect(Collectors.toList())
