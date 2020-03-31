@@ -58,6 +58,11 @@ public class TripEntity {
 
     private int rating;
 
+    @ManyToOne
+    @EqualsAndHashCode.Exclude
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userName")
+    private TripUser user;
+
     public void createPlannedDaysForTrip() {
         List<PlannedDayEntity> plannedDayEntitiesPreparation = new ArrayList<>();
         List<LocalDate> plannedDaysDates = dateOfDeparture.datesUntil(dateOfReturn).collect(Collectors.toList());
