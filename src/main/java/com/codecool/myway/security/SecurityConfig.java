@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/auth/login").permitAll()
-                .antMatchers("/trip/recommended").authenticated()
+                .antMatchers("/trip/recommended").permitAll()
                 .antMatchers("/trip/in-progress").authenticated()
                 .antMatchers("/trip/add").authenticated()
                 .antMatchers("/trip/update").authenticated()
