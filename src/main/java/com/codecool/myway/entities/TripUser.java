@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
@@ -36,4 +37,14 @@ public class TripUser {
     @ToString.Exclude
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private List<TripEntity> trips;
+
+    @NotBlank
+    private String firstName;
+
+    @NotBlank
+    private String lastName;
+
+    @NotBlank
+    @Email
+    private String email;
 }
