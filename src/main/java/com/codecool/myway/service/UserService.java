@@ -57,6 +57,10 @@ public class UserService {
         return register(userCredentials.getUsername(), userCredentials.getPassword());
     }
 
+    public TripUser getTripUserByUserName(String userName) {
+        return tripUserRepository.findByUserName(userName);
+    }
+
     public TripUser registerAllData(UserCredentials userCredentials) {
         return register(userCredentials.getUsername(), userCredentials.getPassword(),
                 userCredentials.getFirstName(), userCredentials.getLastName(), userCredentials.getEmail());
