@@ -24,8 +24,10 @@ public class DataInitializer {
 
     @Bean
     public CommandLineRunner createTrips() {
-        TripUser admin = userService.register("admin", "admin", Set.of(Role.USER, Role.ADMIN));
-        TripUser user = userService.register("user", "user");
+        TripUser admin = userService.register("admin", "admin", "Istvan","Joska",
+                "admin@admin.com",Set.of(Role.USER, Role.ADMIN));
+        TripUser user = userService.register("user", "user", "Jakab", "Gipsz",
+                "user@user.com");
 
         return args -> {
             TripEntity trip1 = TripEntity.builder()
