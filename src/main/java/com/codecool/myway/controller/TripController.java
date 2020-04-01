@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin
@@ -24,6 +25,10 @@ public class TripController {
     @GetMapping("/in-progress")
     public List<TripEntity> tripsInProgress() {
         return tripRepository.findAllByOrderByIdDesc();
+
+    }@GetMapping("/completed")
+    public List<TripEntity> tripsCompleted() {
+        return tripRepository.findAllByDateOfReturnLessThan(LocalDate.now());
     }
 
     @PostMapping("/add")
