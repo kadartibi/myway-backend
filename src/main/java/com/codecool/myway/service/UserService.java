@@ -17,16 +17,6 @@ public class UserService {
     private final TripUserRepository tripUserRepository;
     private final PasswordEncoder encoder;
 
-    public TripUser register(String username, String password, Set<Role> roles) {
-        return tripUserRepository.save(
-                TripUser.builder()
-                        .userName(username)
-                        .hashedPassword(encoder.encode(password))
-                        .roles(roles)
-                        .build()
-        );
-    }
-
     public TripUser register(String username, String password) {
         return tripUserRepository.save(
                 TripUser.builder()
@@ -37,8 +27,43 @@ public class UserService {
         );
     }
 
+    public TripUser register(String username, String password, String firstName, String lastName, String email) {
+        return tripUserRepository.save(
+                TripUser.builder()
+                        .userName(username)
+                        .hashedPassword(encoder.encode(password))
+                        .role(Role.USER)
+                        .firstName(firstName)
+                        .lastName(lastName)
+                        .email(email)
+                        .build()
+        );
+    }
+
+    public TripUser register(String username, String password, String firstName, String lastName, String email, Set<Role> roles) {
+        return tripUserRepository.save(
+                TripUser.builder()
+                        .userName(username)
+                        .hashedPassword(encoder.encode(password))
+                        .roles(roles)
+                        .firstName(firstName)
+                        .lastName(lastName)
+                        .email(email)
+                        .build()
+        );
+    }
+
     public TripUser register(UserCredentials userCredentials) {
         return register(userCredentials.getUsername(), userCredentials.getPassword());
+    }
+
+    public TripUser getTripUserByUserName(String userName) {
+        return tripUserRepository.findByUserName(userName);
+    }
+
+    public TripUser registerAllData(UserCredentials userCredentials) {
+        return register(userCredentials.getUsername(), userCredentials.getPassword(),
+                userCredentials.getFirstName(), userCredentials.getLastName(), userCredentials.getEmail());
     }
 
 }

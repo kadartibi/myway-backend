@@ -39,7 +39,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody UserCredentials tripUser) {
-        userService.register(tripUser);
+        userService.registerAllData(tripUser);
         return ResponseEntity.status(HttpStatus.CREATED).body(tripUser.getUsername());
     }
 
