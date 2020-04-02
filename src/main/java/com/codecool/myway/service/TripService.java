@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -22,6 +23,10 @@ public class TripService {
 
     public List<TripEntity> getInProgressTripsByUser() {
         return tripRepository.findAllByUserOrderByIdDesc(getCurrentUser());
+    }
+
+    public List<TripEntity> getCompletedTripsByUser() {
+        return tripRepository.findAllByUserAndDateOfReturnLessThan(getCurrentUser(), LocalDate.now());
     }
 
     private TripUser getCurrentUser(){

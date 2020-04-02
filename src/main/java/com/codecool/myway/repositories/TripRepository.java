@@ -15,7 +15,7 @@ public interface TripRepository extends JpaRepository<TripEntity, Long> {
 
     List<TripEntity> findAllByOrderByIdDesc();
 
-    List<TripEntity> findAllByDateOfReturnLessThan(LocalDate time);
+    List<TripEntity> findAllByUserAndDateOfReturnLessThan(TripUser tripUser, LocalDate time);
 
     List<TripEntity> findAllByUserOrderByIdDesc(TripUser tripUser);
 //

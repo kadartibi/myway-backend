@@ -32,7 +32,7 @@ public class TripController {
 
     }@GetMapping("/completed")
     public List<TripEntity> tripsCompleted() {
-        return tripRepository.findAllByDateOfReturnLessThan(LocalDate.now());
+        return tripService.getCompletedTripsByUser();
     }
 
     @PostMapping("/add")
