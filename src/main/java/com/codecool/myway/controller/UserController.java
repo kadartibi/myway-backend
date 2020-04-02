@@ -1,6 +1,7 @@
 package com.codecool.myway.controller;
 
 import com.codecool.myway.controller.dto.UserCredentials;
+import com.codecool.myway.entities.TripUser;
 import com.codecool.myway.security.JwtUtil;
 import com.codecool.myway.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,7 @@ import java.time.Duration;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
-public class AuthController {
+public class UserController {
 
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
