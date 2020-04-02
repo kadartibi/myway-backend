@@ -22,7 +22,7 @@ public class TripService {
 
 
     public List<TripEntity> getInProgressTripsByUser() {
-        return tripRepository.findAllByUserOrderByIdDesc(getCurrentUser());
+        return tripRepository.findAllByUserAndDateOfReturnGreaterThan(getCurrentUser(), LocalDate.now());
     }
 
     public List<TripEntity> getCompletedTripsByUser() {
