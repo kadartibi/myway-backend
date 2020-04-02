@@ -5,6 +5,8 @@ import com.codecool.myway.entities.Role;
 import com.codecool.myway.entities.TripUser;
 import com.codecool.myway.repositories.TripUserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +66,11 @@ public class UserService {
     public TripUser registerAllData(UserCredentials userCredentials) {
         return register(userCredentials.getUsername(), userCredentials.getPassword(),
                 userCredentials.getFirstName(), userCredentials.getLastName(), userCredentials.getEmail());
+    }
+    public TripUser getCurrentUserDetails(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName =  authentication.getPrincipal().toString();
+        return tripUserRepository.findByUserName(currentUserName);
     }
 
 }

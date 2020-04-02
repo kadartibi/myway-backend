@@ -34,4 +34,5 @@ public class TripService {
         String currentUserName =  authentication.getPrincipal().toString();
         return userService.getTripUserByUserName(currentUserName);
     }
+
 }

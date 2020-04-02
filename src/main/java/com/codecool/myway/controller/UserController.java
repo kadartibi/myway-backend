@@ -43,6 +43,11 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(tripUser.getUsername());
     }
 
+    @GetMapping("/user")
+    public TripUser getUserDetails(){
+        return userService.getCurrentUserDetails();
+    }
+
     private void addTokenToCookie(HttpServletResponse response, String token) {
         ResponseCookie cookie = ResponseCookie.from("token", token)
                 .domain("localhost") // should be parameterized
