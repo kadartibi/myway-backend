@@ -5,6 +5,7 @@ import com.codecool.myway.entities.TripUser;
 import com.codecool.myway.security.JwtUtil;
 import com.codecool.myway.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.Duration;
 
@@ -54,6 +57,24 @@ public class UserController {
                 .sameSite("Strict")  // CSRF
 //                .secure(true)
                 .maxAge(Duration.ofHours(24))
+                .httpOnly(true)      // XSS
+                .path("/")
+                .build();
+        response.addHeader("Set-Cookie", cookie.toString());
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout(HttpServletResponse response) {
+        createLogoutCookie(response);
+        return ResponseEntity.ok().body("loggedout");
+    }
+
+    private void createLogoutCookie(HttpServletResponse response) {
+        ResponseCookie cookie = ResponseCookie.from("token", "")
+                .domain("localhost") // should be parameterized
+                .sameSite("Strict")  // CSRF
+//                .secure(true)
+                .maxAge(0)
                 .httpOnly(true)      // XSS
                 .path("/")
                 .build();

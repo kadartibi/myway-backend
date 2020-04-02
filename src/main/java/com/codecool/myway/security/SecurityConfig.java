@@ -53,16 +53,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/auth/login").permitAll()
+                .antMatchers("/auth/logout").permitAll()
                 .antMatchers("/trip/recommended").permitAll()
                 .antMatchers("/trip/in-progress").authenticated()
                 .antMatchers("/trip/completed").authenticated()
                 .antMatchers("/trip/add").authenticated()
                 .antMatchers("/trip/update").authenticated()
-                .antMatchers("/trip/{tripId}/list-all-days").permitAll()
-                .antMatchers("/trip/{tripId}/add-activity-to-day/{dayId}").authenticated()
-                .antMatchers("/trip/{tripId}/delete-from-activities/{dayId}").authenticated()
+                .antMatchers("/trip/{tripId:[\\d+]}/list-all-days").permitAll()
+                .antMatchers("/trip/{tripId:[\\d+]}/add-activity-to-day/{dayId:[\\d+]}").authenticated()
+                .antMatchers("/trip/{tripId:[\\d+]}/delete-from-activities/{dayId:[\\d+]}").authenticated()
                 .anyRequest().permitAll();
-
     }
 
     @Bean
