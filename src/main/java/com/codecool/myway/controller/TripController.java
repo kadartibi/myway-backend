@@ -37,6 +37,7 @@ public class TripController {
 
     @PostMapping("/add")
     public void addTrip(@Valid @RequestBody TripEntity trip) {
+        tripService.addUserToTrip(trip);
         trip.createPlannedDaysForTrip();
         tripRepository.save(trip);
     }

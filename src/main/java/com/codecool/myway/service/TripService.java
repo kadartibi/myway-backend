@@ -35,4 +35,7 @@ public class TripService {
         return userService.getTripUserByUserName(currentUserName);
     }
 
+    public void addUserToTrip(TripEntity trip) {
+        trip.setUser(getCurrentUser());
+    }
 }
