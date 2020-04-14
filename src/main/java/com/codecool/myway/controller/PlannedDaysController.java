@@ -1,13 +1,17 @@
 package com.codecool.myway.controller;
 
-import com.codecool.myway.dao.TripStorage;
-import com.codecool.myway.model.Activity;
-import com.codecool.myway.model.PlannedDay;
-import com.codecool.myway.model.Trip;
+import com.codecool.myway.entities.ActivityEntity;
+import com.codecool.myway.entities.PlannedDayEntity;
+import com.codecool.myway.entities.TripEntity;
+import com.codecool.myway.repositories.ActivityRepository;
+import com.codecool.myway.repositories.PlannedDayRepository;
+import com.codecool.myway.repositories.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -15,20 +19,33 @@ import java.util.List;
 public class PlannedDaysController {
 
     @Autowired
-    private TripStorage tripStorage;
+    private TripRepository tripRepository;
+
+    @Autowired
+    private PlannedDayRepository plannedDayRepository;
+
+    @Autowired
+    private ActivityRepository activityRepository;
 
     @GetMapping("/list-all-days")
-    public List<PlannedDay> listDaysPlanned(@PathVariable int tripId) {
-        Trip trip = tripStorage.getTrip(tripId);
-        return trip.getPlannedDays();
+    public List<PlannedDayEntity> listDaysPlanned(@PathVariable Long tripId) {
+        //System.out.println(plannedDayRepository.listPlannedDaysForTrip(tripId));
+        Optional<TripEntity> trip = tripRepository.findById(tripId);
+        return trip.map(TripEntity::getPlannedDays).orElse(null);
     }
 
     @PostMapping("/add-activity-to-day/{dayId}")
-    public void addActivityToDay(@PathVariable int tripId, @PathVariable int dayId, @RequestBody Activity activity) {
-        Trip trip = tripStorage.getTrip(tripId);
-        PlannedDay day = trip.getDayById(dayId);
-        day.addToActivities(activity);
-        System.out.println(day.toString());
+    public PlannedDayEntity addActivityToDay(@PathVariable Long dayId,@Valid @RequestBody ActivityEntity activity) {
+        Optional<PlannedDayEntity> plannedDay = plannedDayRepository.findById(dayId);
+        plannedDay.ifPresent(activity::setPlannedDay);
+        activityRepository.save(activity);
+        return plannedDay.orElse(null);
     }
 
+    @PostMapping("/delete-from-activities/{dayId}")
+    public PlannedDayEntity updateActivities(@PathVariable Long dayId, @RequestBody ActivityEntity activity) {
+        activityRepository.deleteById(activity.getId());
+        Optional<PlannedDayEntity> plannedDay = plannedDayRepository.findById(dayId);
+        return plannedDay.orElse(null);
+    }
 }
