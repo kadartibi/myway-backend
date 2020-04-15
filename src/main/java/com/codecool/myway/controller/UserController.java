@@ -74,7 +74,7 @@ public class UserController {
                 .domain("localhost") // should be parameterized
                 .sameSite("Strict")  // CSRF
 //                .secure(true)
-                .maxAge(0)
+                .maxAge(Duration.ofHours(24))
                 .httpOnly(true)      // XSS
                 .path("/")
                 .build();
