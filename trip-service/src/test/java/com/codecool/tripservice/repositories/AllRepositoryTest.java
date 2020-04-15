@@ -1,4 +1,4 @@
-package com.codecool.myway.repositories;
+package com.codecool.tripservice.repositories;
 
 import com.codecool.myway.entities.ActivityEntity;
 import com.codecool.myway.entities.PlannedDayEntity;
@@ -11,11 +11,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
 import javax.validation.ConstraintViolationException;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;

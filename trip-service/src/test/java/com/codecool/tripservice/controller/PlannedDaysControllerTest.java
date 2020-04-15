@@ -1,4 +1,4 @@
-package com.codecool.myway.controller;
+package com.codecool.tripservice.controller;
 
 import com.codecool.myway.repositories.PlannedDayRepository;
 import com.codecool.myway.repositories.TripRepository;
