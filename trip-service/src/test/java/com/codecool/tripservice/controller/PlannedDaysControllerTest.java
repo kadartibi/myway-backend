@@ -1,7 +1,7 @@
 package com.codecool.tripservice.controller;
 
-import com.codecool.myway.repositories.PlannedDayRepository;
-import com.codecool.myway.repositories.TripRepository;
+import com.codecool.tripservice.repository.PlannedDayRepository;
+import com.codecool.tripservice.repository.TripRepository;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

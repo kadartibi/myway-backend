@@ -1,6 +1,7 @@
 package com.codecool.userservice.repository;
 
-import com.codecool.myway.entities.TripUser;
+
+import com.codecool.userservice.entity.TripUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TripUserRepository extends JpaRepository<TripUser, String> {

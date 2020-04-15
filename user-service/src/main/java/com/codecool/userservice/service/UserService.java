@@ -1,9 +1,10 @@
 package com.codecool.userservice.service;
 
-import com.codecool.myway.controller.dto.UserCredentials;
-import com.codecool.myway.entities.Role;
-import com.codecool.myway.entities.TripUser;
-import com.codecool.myway.repositories.TripUserRepository;
+
+import com.codecool.userservice.controller.dto.UserCredentials;
+import com.codecool.userservice.entity.Role;
+import com.codecool.userservice.entity.TripUser;
+import com.codecool.userservice.repository.TripUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

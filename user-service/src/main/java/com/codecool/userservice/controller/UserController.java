@@ -1,9 +1,10 @@
 package com.codecool.userservice.controller;
 
-import com.codecool.myway.controller.dto.UserCredentials;
-import com.codecool.myway.entities.TripUser;
-import com.codecool.myway.security.JwtUtil;
-import com.codecool.myway.service.UserService;
+
+import com.codecool.userservice.controller.dto.UserCredentials;
+import com.codecool.userservice.entity.TripUser;
+import com.codecool.userservice.security.JwtUtil;
+import com.codecool.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.http.HttpStatus;

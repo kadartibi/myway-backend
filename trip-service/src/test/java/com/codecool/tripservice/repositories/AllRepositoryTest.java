@@ -1,8 +1,12 @@
 package com.codecool.tripservice.repositories;
 
-import com.codecool.myway.entities.ActivityEntity;
-import com.codecool.myway.entities.PlannedDayEntity;
-import com.codecool.myway.entities.TripEntity;
+
+import com.codecool.tripservice.entity.ActivityEntity;
+import com.codecool.tripservice.entity.PlannedDayEntity;
+import com.codecool.tripservice.entity.TripEntity;
+import com.codecool.tripservice.repository.ActivityRepository;
+import com.codecool.tripservice.repository.PlannedDayRepository;
+import com.codecool.tripservice.repository.TripRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +20,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

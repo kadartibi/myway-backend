@@ -1,7 +1,8 @@
 package com.codecool.userservice.security;
 
-import com.codecool.myway.entities.TripUser;
-import com.codecool.myway.repositories.TripUserRepository;
+
+import com.codecool.userservice.entity.TripUser;
+import com.codecool.userservice.repository.TripUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
