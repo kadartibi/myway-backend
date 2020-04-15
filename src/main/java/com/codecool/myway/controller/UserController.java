@@ -41,8 +41,14 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> signup(@RequestBody UserCredentials tripUser) {
+    public ResponseEntity<String> signup(@RequestBody UserCredentials tripUser, HttpServletResponse response) {
         userService.registerAllData(tripUser);
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                tripUser.getUsername(),
+                tripUser.getPassword()
+        ));
+        String jwtToken = jwtUtil.generateToken(authentication);
+        addTokenToCookie(response, jwtToken);
         return ResponseEntity.status(HttpStatus.CREATED).body(tripUser.getUsername());
     }
 
@@ -66,7 +72,7 @@ public class UserController {
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
         createLogoutCookie(response);
-        return ResponseEntity.ok().body("loggedout");
+        return ResponseEntity.ok().build();
     }
 
     private void createLogoutCookie(HttpServletResponse response) {
