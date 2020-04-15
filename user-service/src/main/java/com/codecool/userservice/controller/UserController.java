@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -88,4 +89,14 @@ public class UserController {
         response.addHeader("Set-Cookie", cookie.toString());
     }
 
+    @GetMapping("/current-user")
+    public String getCurrentUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getPrincipal().toString();
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return "Megy bazd meg";
+    }
 }

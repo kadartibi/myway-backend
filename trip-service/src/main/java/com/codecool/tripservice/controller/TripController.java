@@ -29,8 +29,9 @@ public class TripController {
     @GetMapping("/in-progress")
     public List<TripEntity> tripsInProgress() {
         return tripService.getInProgressTripsByUser();
+    }
 
-    }@GetMapping("/completed")
+    @GetMapping("/completed")
     public List<TripEntity> tripsCompleted() {
         return tripService.getCompletedTripsByUser();
     }

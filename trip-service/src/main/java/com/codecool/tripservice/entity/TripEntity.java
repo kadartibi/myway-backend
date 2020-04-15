@@ -58,7 +58,7 @@ public class TripEntity {
     private int rating;
 
     @EqualsAndHashCode.Exclude
-    private String username;
+    private String tripUserName;
 
     public void createPlannedDaysForTrip() {
         List<PlannedDayEntity> plannedDayEntitiesPreparation = new ArrayList<>();
