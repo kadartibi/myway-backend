@@ -1,8 +1,9 @@
 package com.codecool.tripservice.service;
 
-import com.codecool.myway.entities.TripEntity;
-import com.codecool.myway.entities.TripUser;
-import com.codecool.myway.repositories.TripRepository;
+
+import com.codecool.tripservice.entity.TripEntity;
+import com.codecool.tripservice.model.TripUser;
+import com.codecool.tripservice.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -1,5 +1,6 @@
 package com.codecool.tripservice.entity;
 
+import com.codecool.tripservice.model.TripUser;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;

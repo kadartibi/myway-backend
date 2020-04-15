@@ -1,8 +1,9 @@
 package com.codecool.tripservice.repository;
 
-import com.codecool.myway.entities.PlannedDayEntity;
-import com.codecool.myway.entities.TripEntity;
-import com.codecool.myway.entities.TripUser;
+
+
+import com.codecool.tripservice.entity.TripEntity;
+import com.codecool.tripservice.model.TripUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;

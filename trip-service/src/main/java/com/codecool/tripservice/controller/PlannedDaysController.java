@@ -1,11 +1,13 @@
 package com.codecool.tripservice.controller;
 
-import com.codecool.myway.entities.ActivityEntity;
-import com.codecool.myway.entities.PlannedDayEntity;
-import com.codecool.myway.entities.TripEntity;
-import com.codecool.myway.repositories.ActivityRepository;
-import com.codecool.myway.repositories.PlannedDayRepository;
-import com.codecool.myway.repositories.TripRepository;
+
+
+import com.codecool.tripservice.entity.ActivityEntity;
+import com.codecool.tripservice.entity.PlannedDayEntity;
+import com.codecool.tripservice.entity.TripEntity;
+import com.codecool.tripservice.repository.ActivityRepository;
+import com.codecool.tripservice.repository.PlannedDayRepository;
+import com.codecool.tripservice.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

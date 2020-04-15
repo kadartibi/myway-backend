@@ -1,9 +1,7 @@
 package com.codecool.tripservice.service;
 
-import com.codecool.myway.entities.Role;
-import com.codecool.myway.entities.TripEntity;
-import com.codecool.myway.entities.TripUser;
-import com.codecool.myway.repositories.TripRepository;
+import com.codecool.tripservice.entity.TripEntity;
+import com.codecool.tripservice.repository.TripRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 @Configuration
 @RequiredArgsConstructor
@@ -24,10 +21,6 @@ public class DataInitializer {
 
     @Bean
     public CommandLineRunner createTrips() {
-        TripUser admin = userService.register("admin", "admin", "Istvan","Joska",
-                "admin@admin.com",Set.of(Role.USER, Role.ADMIN));
-        TripUser user = userService.register("user", "user", "Jakab", "Gipsz",
-                "user@user.com");
 
         return args -> {
             TripEntity trip1 = TripEntity.builder()
@@ -37,7 +30,7 @@ public class DataInitializer {
                     .rating(139)
                     .dateOfDeparture(LocalDate.of(2019, 6, 20))
                     .dateOfReturn(LocalDate.of(2019, 6, 30))
-                    .user(user)
+                    //.user(user)
                     .build();
 
             TripEntity trip2 = TripEntity.builder()
@@ -48,7 +41,7 @@ public class DataInitializer {
                     .rating(87)
                     .dateOfDeparture(LocalDate.of(2020, 1, 15))
                     .dateOfReturn(LocalDate.of(2020, 1, 24))
-                    .user(user)
+                    //.user(user)
                     .build();
 
             TripEntity trip3 = TripEntity.builder()
@@ -58,7 +51,7 @@ public class DataInitializer {
                     .rating(70)
                     .dateOfDeparture(LocalDate.of(2019, 11, 21))
                     .dateOfReturn(LocalDate.of(2019, 11, 30))
-                    .user(admin)
+                    //.user(admin)
                     .build();
 
             TripEntity trip4 = TripEntity.builder()
@@ -69,7 +62,7 @@ public class DataInitializer {
                     .rating(45)
                     .dateOfDeparture(LocalDate.of(2020, 2, 10))
                     .dateOfReturn(LocalDate.of(2020, 2, 18))
-                    .user(admin)
+                    //.user(admin)
                     .build();
 
             TripEntity trip5 = TripEntity.builder()
@@ -79,7 +72,7 @@ public class DataInitializer {
                     .rating(51)
                     .dateOfDeparture(LocalDate.of(2020, 2, 2))
                     .dateOfReturn(LocalDate.of(2020, 2, 10))
-                    .user(admin)
+                    //.user(admin)
                     .build();
 
             TripEntity trip6 = TripEntity.builder()
@@ -91,7 +84,7 @@ public class DataInitializer {
                     .rating(9)
                     .dateOfDeparture(LocalDate.of(2020, 10, 20))
                     .dateOfReturn(LocalDate.of(2020, 10, 30))
-                    .user(admin)
+                    //.user(admin)
                     .build();
 
             List<TripEntity> trips = Arrays.asList(trip1, trip2, trip3, trip4, trip5, trip6);
