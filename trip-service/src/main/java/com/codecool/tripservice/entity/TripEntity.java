@@ -1,6 +1,5 @@
 package com.codecool.tripservice.entity;
 
-import com.codecool.tripservice.model.TripUser;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
@@ -58,10 +57,8 @@ public class TripEntity {
 
     private int rating;
 
-    @ManyToOne
     @EqualsAndHashCode.Exclude
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "userName")
-    private TripUser user;
+    private String username;
 
     public void createPlannedDaysForTrip() {
         List<PlannedDayEntity> plannedDayEntitiesPreparation = new ArrayList<>();

@@ -2,7 +2,6 @@ package com.codecool.tripservice.service;
 
 
 import com.codecool.tripservice.entity.TripEntity;
-import com.codecool.tripservice.model.TripUser;
 import com.codecool.tripservice.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,25 +17,20 @@ public class TripService {
     @Autowired
     private TripRepository tripRepository;
 
-    @Autowired
-    private UserService userService;
-
-
     public List<TripEntity> getInProgressTripsByUser() {
-        return tripRepository.findAllByUserAndDateOfReturnGreaterThan(getCurrentUser(), LocalDate.now());
+        return tripRepository.findAllByUsernameAndDateOfReturnGreaterThan(getCurrentUser(), LocalDate.now());
     }
 
     public List<TripEntity> getCompletedTripsByUser() {
-        return tripRepository.findAllByUserAndDateOfReturnLessThan(getCurrentUser(), LocalDate.now());
+        return tripRepository.findAllByUsernameAndDateOfReturnLessThan(getCurrentUser(), LocalDate.now());
     }
 
-    private TripUser getCurrentUser(){
+    private String getCurrentUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName =  authentication.getPrincipal().toString();
-        return userService.getTripUserByUserName(currentUserName);
+        return authentication.getPrincipal().toString();
     }
 
     public void addUserToTrip(TripEntity trip) {
-        trip.setUser(getCurrentUser());
+        trip.setUsername(getCurrentUser());
     }
 }
