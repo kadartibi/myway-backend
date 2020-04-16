@@ -21,7 +21,7 @@ import java.time.Duration;
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/auth")
+@RequestMapping
 public class UserController {
 
     private final AuthenticationManager authenticationManager;
