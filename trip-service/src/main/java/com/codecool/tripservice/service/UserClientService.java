@@ -1,6 +1,7 @@
 package com.codecool.tripservice.service;
 
 import com.codecool.tripservice.model.TripUser;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,10 @@ public class UserClientService {
         return restTemplate.getForEntity(baseUrl + "current-user", String.class).getBody();
     }
 
-    public Optional<TripUser> findById(String username) {
+    public TripUser findById(String username) {
+        ObjectMapper mapper = new ObjectMapper();
+        TripUser tripUser = restTemplate.getForEntity(baseUrl + "current-user-object" + username, TripUser.class).getBody();
+        return tripUser;
     }
+
 }
