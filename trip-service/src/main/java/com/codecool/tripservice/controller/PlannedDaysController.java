@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/trip/{tripId}")
+@RequestMapping("/{tripId}")
 public class PlannedDaysController {
 
     @Autowired
