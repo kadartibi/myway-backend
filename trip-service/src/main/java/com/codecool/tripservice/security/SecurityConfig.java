@@ -52,8 +52,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/auth/login").permitAll()
-                .antMatchers("/auth/logout").permitAll()
                 .antMatchers("/trip/recommended").permitAll()
                 .antMatchers("/trip/in-progress").authenticated()
                 .antMatchers("/trip/completed").authenticated()
