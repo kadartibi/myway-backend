@@ -1,6 +1,7 @@
 package com.codecool.tripservice.service;
 
 import com.codecool.tripservice.model.TripUser;
+import com.codecool.tripservice.security.JwtRequestFilter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,5 +33,6 @@ public class UserClientService {
         TripUser tripUser = restTemplate.getForEntity(baseUrl + "current-user-object" + username, TripUser.class).getBody();
         return tripUser;
     }
+
 
 }
