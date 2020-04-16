@@ -3,9 +3,11 @@ package com.codecool.userservice.controller;
 
 import com.codecool.userservice.controller.dto.UserCredentials;
 import com.codecool.userservice.entity.TripUser;
+import com.codecool.userservice.security.JwtRequestFilter;
 import com.codecool.userservice.security.JwtUtil;
 import com.codecool.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,7 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final UserService userService;
+
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UserCredentials tripUser, HttpServletResponse response) {
@@ -96,4 +99,5 @@ public class UserController {
     public TripUser getCurrentUserObject(@PathVariable String userName) {
         return userService.getCurrentUserDetails();
     }
+
 }
