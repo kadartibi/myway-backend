@@ -19,11 +19,11 @@ public class TripService {
     private UserClientService userClientService;
 
     public List<TripEntity> getInProgressTripsByUser() {
-        return tripRepository.findAllByTripUserNameAndDateOfReturnGreaterThan(getCurrentUser(), LocalDate.now());
+        return tripRepository.findAllByTripUserIdAndDateOfReturnGreaterThan(getCurrentUser(), LocalDate.now());
     }
 
     public List<TripEntity> getCompletedTripsByUser() {
-        return tripRepository.findAllByTripUserNameAndDateOfReturnLessThan(getCurrentUser(), LocalDate.now());
+        return tripRepository.findAllByTripUserIdAndDateOfReturnLessThan(getCurrentUser(), LocalDate.now());
     }
 
     private String getCurrentUser(){
@@ -31,6 +31,6 @@ public class TripService {
     }
 
     public void addUserToTrip(TripEntity trip) {
-        trip.setTripUserName(getCurrentUser());
+        trip.setTripUserId(getCurrentUser());
     }
 }

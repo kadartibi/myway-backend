@@ -15,11 +15,11 @@ public interface TripRepository extends JpaRepository<TripEntity, Long> {
 
     List<TripEntity> findAllByOrderByIdDesc();
 
-    List<TripEntity> findAllByTripUserNameAndDateOfReturnLessThan(String tripUser, LocalDate time);
+    List<TripEntity> findAllByTripUserIdAndDateOfReturnLessThan(String tripUser, LocalDate time);
 
-    List<TripEntity> findAllByTripUserNameOrderByIdDesc(String tripUser);
+    List<TripEntity> findAllByTripUserIdOrderByIdDesc(String tripUser);
 
-    List<TripEntity> findAllByTripUserNameAndDateOfReturnGreaterThan(String tripUser, LocalDate time);
+    List<TripEntity> findAllByTripUserIdAndDateOfReturnGreaterThan(String tripUser, LocalDate time);
 //
 //    @Query("select p.plannedDays from TripEntity p  ")
 //    List<PlannedDayEntity> getPlannedDays();

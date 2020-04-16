@@ -30,7 +30,7 @@ public class DataInitializer {
                     .rating(139)
                     .dateOfDeparture(LocalDate.of(2019, 6, 20))
                     .dateOfReturn(LocalDate.of(2019, 6, 30))
-                    .tripUserName("user")
+                    .tripUserId("user")
                     .build();
 
             TripEntity trip2 = TripEntity.builder()
@@ -41,7 +41,7 @@ public class DataInitializer {
                     .rating(87)
                     .dateOfDeparture(LocalDate.of(2020, 1, 15))
                     .dateOfReturn(LocalDate.of(2020, 1, 24))
-                    .tripUserName("admin")
+                    .tripUserId("admin")
                     .build();
 
             TripEntity trip3 = TripEntity.builder()
@@ -51,7 +51,7 @@ public class DataInitializer {
                     .rating(70)
                     .dateOfDeparture(LocalDate.of(2019, 11, 21))
                     .dateOfReturn(LocalDate.of(2019, 11, 30))
-                    .tripUserName("admin")
+                    .tripUserId("admin")
                     .build();
 
             TripEntity trip4 = TripEntity.builder()
@@ -62,7 +62,7 @@ public class DataInitializer {
                     .rating(45)
                     .dateOfDeparture(LocalDate.of(2020, 2, 10))
                     .dateOfReturn(LocalDate.of(2020, 2, 18))
-                    .tripUserName("admin")
+                    .tripUserId("admin")
                     .build();
 
             TripEntity trip5 = TripEntity.builder()
@@ -72,7 +72,7 @@ public class DataInitializer {
                     .rating(51)
                     .dateOfDeparture(LocalDate.of(2020, 2, 2))
                     .dateOfReturn(LocalDate.of(2020, 2, 10))
-                    .tripUserName("admin")
+                    .tripUserId("admin")
                     .build();
 
             TripEntity trip6 = TripEntity.builder()
@@ -84,7 +84,7 @@ public class DataInitializer {
                     .rating(9)
                     .dateOfDeparture(LocalDate.of(2020, 10, 20))
                     .dateOfReturn(LocalDate.of(2020, 10, 30))
-                    .tripUserName("user")
+                    .tripUserId("user")
                     .build();
 
             List<TripEntity> trips = Arrays.asList(trip1, trip2, trip3, trip4, trip5, trip6);

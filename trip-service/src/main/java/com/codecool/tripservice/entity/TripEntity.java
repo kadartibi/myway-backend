@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Entity
 @Builder
+@Table(name = "trips")
 public class TripEntity {
 
     @Id
@@ -58,7 +59,7 @@ public class TripEntity {
     private int rating;
 
     @EqualsAndHashCode.Exclude
-    private String tripUserName;
+    private String tripUserId;
 
     public void createPlannedDaysForTrip() {
         List<PlannedDayEntity> plannedDayEntitiesPreparation = new ArrayList<>();
