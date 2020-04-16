@@ -94,9 +94,4 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getPrincipal().toString();
     }
-
-    @GetMapping("/test")
-    public String test() {
-        return "Megy bazd meg";
-    }
 }
