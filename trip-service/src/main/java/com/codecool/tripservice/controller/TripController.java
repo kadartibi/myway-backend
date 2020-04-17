@@ -1,12 +1,8 @@
 package com.codecool.tripservice.controller;
 
-
 import com.codecool.tripservice.entity.TripEntity;
 import com.codecool.tripservice.repository.TripRepository;
-import com.codecool.tripservice.security.JwtRequestFilter;
 import com.codecool.tripservice.service.TripService;
-import com.codecool.tripservice.service.UserClientService;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +19,6 @@ public class TripController {
 
     @Autowired
     private TripService tripService;
-
-    @Autowired
-    private  UserClientService userClientService;
 
     @GetMapping("/recommended")
     public List<TripEntity> tripsList() {
@@ -53,6 +46,4 @@ public class TripController {
     public TripEntity updateTrip(@RequestBody TripEntity trip) throws Exception {
         return null;
     }
-
-
 }

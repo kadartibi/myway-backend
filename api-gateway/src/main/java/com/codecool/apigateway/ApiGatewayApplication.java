@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
-@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 @EnableZuulProxy
 @EnableEurekaClient
 public class ApiGatewayApplication {
