@@ -31,7 +31,6 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UserCredentials tripUser, HttpServletResponse response) {
-        System.out.println("Before authentication");
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 tripUser.getUsername(),
                 tripUser.getPassword()
@@ -93,11 +92,11 @@ public class UserController {
 
     @GetMapping("/current-user-object/{userName}")
     public TripUser getCurrentUserObject(@PathVariable String userName) {
-        return tripUserService.getCurrentUserDetails(userName).orElse(null);
+        return tripUserService.findById(userName);
     }
 
     @GetMapping("/test")
-    public Optional<TripUser> test() {
+    public TripUser test() {
         return tripUserService.findById("user");
     }
 

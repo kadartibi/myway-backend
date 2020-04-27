@@ -1,7 +1,5 @@
 package com.codecool.userservice.entity;
 
-
-
 import lombok.*;
 
 import javax.persistence.*;

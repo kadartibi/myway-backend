@@ -22,8 +22,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         TripUser tripUser = tripUserService
-                .findById(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+                .findById(username);
+        if (tripUser == null) {
+            throw new UsernameNotFoundException("Username not found");
+        } else {
+            tripUser.setUsername(username);
+        }
 
         return new User(
                 tripUser.getUsername(),

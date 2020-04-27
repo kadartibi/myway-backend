@@ -18,17 +18,11 @@ public class TripUserService {
     @Value("${userservice.url}")
     private String baseUrl;
 
-    public Optional<TripUser> findById(String username) {
-        Optional<TripUser> user = restTemplate.getForEntity(baseUrl + "current-user-object/" + username, Optional.class).getBody();
-        return user;
+    public TripUser findById(String username) {
+        return restTemplate.getForEntity(baseUrl + "current-user-object/" + username, TripUser.class).getBody();
     }
 
     public void registerAllData(UserCredentials tripUser) {
         restTemplate.postForEntity(baseUrl + "signup", tripUser, String.class);
-    }
-
-    public Optional<TripUser> getCurrentUserDetails(String username) {
-        Optional<TripUser> user = restTemplate.getForEntity(baseUrl + "current-user-object/" + username, Optional.class).getBody();
-        return user;
     }
 }
