@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.time.Duration;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -30,10 +31,12 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UserCredentials tripUser, HttpServletResponse response) {
+        System.out.println("Before authentication");
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 tripUser.getUsername(),
                 tripUser.getPassword()
         ));
+        System.out.println(authentication.toString());
         String jwtToken = jwtUtil.generateToken(authentication);
         addTokenToCookie(response, jwtToken);
         return ResponseEntity.ok().body(tripUser.getUsername());
@@ -94,8 +97,8 @@ public class UserController {
     }
 
     @GetMapping("/test")
-    public String test() {
-        return "Test works";
+    public Optional<TripUser> test() {
+        return tripUserService.findById("user");
     }
 
 }
