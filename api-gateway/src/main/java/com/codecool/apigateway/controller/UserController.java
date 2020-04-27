@@ -35,7 +35,6 @@ public class UserController {
                 tripUser.getPassword()
         ));
         String jwtToken = jwtUtil.generateToken(authentication);
-        System.out.println(jwtToken);
         addTokenToCookie(response, jwtToken);
         return ResponseEntity.ok().body(tripUser.getUsername());
     }
@@ -47,6 +46,7 @@ public class UserController {
                 tripUser.getUsername(),
                 tripUser.getPassword()
         ));
+        System.out.println("Test in login controller");
         String jwtToken = jwtUtil.generateToken(authentication);
         addTokenToCookie(response, jwtToken);
         return ResponseEntity.status(HttpStatus.CREATED).body(tripUser.getUsername());
