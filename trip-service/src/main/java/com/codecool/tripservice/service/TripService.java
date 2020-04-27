@@ -1,11 +1,8 @@
 package com.codecool.tripservice.service;
 
-
 import com.codecool.tripservice.entity.TripEntity;
 import com.codecool.tripservice.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -29,8 +26,7 @@ public class TripService {
     }
 
     private String getCurrentUser(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getPrincipal().toString();
+        return null;
         //return userClientService.getCurrentUsername();
     }
 

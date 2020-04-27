@@ -1,4 +1,4 @@
-package com.codecool.userservice.security;
+package com.codecool.apigateway.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

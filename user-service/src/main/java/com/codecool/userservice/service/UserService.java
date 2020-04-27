@@ -1,14 +1,11 @@
 package com.codecool.userservice.service;
 
-
 import com.codecool.userservice.controller.dto.UserCredentials;
 import com.codecool.userservice.entity.Role;
 import com.codecool.userservice.entity.TripUser;
 import com.codecool.userservice.repository.TripUserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -18,7 +15,7 @@ import java.util.Set;
 public class UserService {
 
     private final TripUserRepository tripUserRepository;
-    private final PasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public TripUser register(String username, String password) {
         return tripUserRepository.save(
@@ -56,21 +53,12 @@ public class UserService {
         );
     }
 
-    public TripUser register(UserCredentials userCredentials) {
-        return register(userCredentials.getUsername(), userCredentials.getPassword());
-    }
-
-    public TripUser getTripUserByUserName(String userName) {
-        return tripUserRepository.findByUserName(userName);
-    }
-
     public TripUser registerAllData(UserCredentials userCredentials) {
         return register(userCredentials.getUsername(), userCredentials.getPassword(),
                 userCredentials.getFirstName(), userCredentials.getLastName(), userCredentials.getEmail());
     }
-    public TripUser getCurrentUserDetails(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName =  authentication.getPrincipal().toString();
+
+    public TripUser getCurrentUserDetails(String currentUserName){
         return tripUserRepository.findByUserName(currentUserName);
     }
 

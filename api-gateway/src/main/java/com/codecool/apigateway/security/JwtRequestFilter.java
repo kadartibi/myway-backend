@@ -1,4 +1,4 @@
-package com.codecool.userservice.security;
+package com.codecool.apigateway.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
