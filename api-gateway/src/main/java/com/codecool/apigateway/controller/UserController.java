@@ -27,7 +27,7 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final TripUserService tripUserService;
-    private String currentUser;
+    private String currentUser = "";
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UserCredentials tripUser, HttpServletResponse response) {
@@ -69,6 +69,7 @@ public class UserController {
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
         createLogoutCookie(response);
+        currentUser = "";
         return ResponseEntity.ok().build();
     }
 
@@ -89,9 +90,12 @@ public class UserController {
         return currentUser;
     }
 
-    @GetMapping("/current-user-object/{userName}")
-    public TripUser getCurrentUserObject(@PathVariable String userName) {
-        return tripUserService.findById(userName);
+    @GetMapping("/current-user-object")
+    public TripUser getCurrentUserObject() {
+        if (currentUser.equals("")) {
+            return null;
+        }
+        return tripUserService.findById(currentUser);
     }
 
 }
