@@ -25,12 +25,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .findById(username);
         if (tripUser == null) {
             throw new UsernameNotFoundException("Username not found");
-        } else {
-            tripUser.setUsername(username);
         }
 
         return new User(
-                tripUser.getUsername(),
+                tripUser.getUserName(),
                 tripUser.getHashedPassword(),
                 tripUser.getRoles()
                         .stream()

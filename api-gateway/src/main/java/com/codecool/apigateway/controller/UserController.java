@@ -95,9 +95,4 @@ public class UserController {
         return tripUserService.findById(userName);
     }
 
-    @GetMapping("/test")
-    public TripUser test() {
-        return tripUserService.findById("user");
-    }
-
 }

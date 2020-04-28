@@ -11,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class TripUser {
 
-    private String username;
+    private String userName;
     private String hashedPassword;
     private Set<Role> roles;
     private String firstName;
