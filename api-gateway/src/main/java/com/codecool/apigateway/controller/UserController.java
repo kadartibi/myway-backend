@@ -27,7 +27,7 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final TripUserService tripUserService;
-
+    private String currentUser;
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody UserCredentials tripUser, HttpServletResponse response) {
@@ -35,9 +35,9 @@ public class UserController {
                 tripUser.getUsername(),
                 tripUser.getPassword()
         ));
-        System.out.println(authentication.toString());
         String jwtToken = jwtUtil.generateToken(authentication);
         addTokenToCookie(response, jwtToken);
+        currentUser = tripUser.getUsername();
         return ResponseEntity.ok().body(tripUser.getUsername());
     }
 
@@ -48,9 +48,9 @@ public class UserController {
                 tripUser.getUsername(),
                 tripUser.getPassword()
         ));
-        System.out.println("Test in login controller");
         String jwtToken = jwtUtil.generateToken(authentication);
         addTokenToCookie(response, jwtToken);
+        currentUser = tripUser.getUsername();
         return ResponseEntity.status(HttpStatus.CREATED).body(tripUser.getUsername());
     }
 
@@ -86,8 +86,7 @@ public class UserController {
 
     @GetMapping("/current-user")
     public String getCurrentUsername() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getPrincipal().toString();
+        return currentUser;
     }
 
     @GetMapping("/current-user-object/{userName}")

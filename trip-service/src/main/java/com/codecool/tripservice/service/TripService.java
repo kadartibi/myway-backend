@@ -34,8 +34,7 @@ public class TripService {
     }
 
     private String getCurrentUser(){
-        System.out.println(restTemplate.getForEntity(baseUrl, String.class).getBody());
-        return "user";
+        return restTemplate.getForEntity(baseUrl, String.class).getBody();
     }
 
     public void addUserToTrip(TripEntity trip) {
