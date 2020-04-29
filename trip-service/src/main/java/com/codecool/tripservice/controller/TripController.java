@@ -1,5 +1,6 @@
 package com.codecool.tripservice.controller;
 
+import com.codecool.tripservice.entity.PlannedDayEntity;
 import com.codecool.tripservice.entity.TripEntity;
 import com.codecool.tripservice.repository.TripRepository;
 import com.codecool.tripservice.service.TripService;
@@ -36,15 +37,18 @@ public class TripController {
     }
 
     @PostMapping("/add")
-    public void addTrip(@Valid @RequestBody TripEntity trip) {
-        tripService.addUserToTrip(trip);
-        trip.createPlannedDaysForTrip();
-        tripRepository.save(trip);
+    public void saveNewTrip(@Valid @RequestBody TripEntity trip) {
+        tripService.saveNewTripToUser(trip);
     }
 
     @PutMapping("/update")
     public TripEntity updateTrip(@RequestBody TripEntity trip) throws Exception {
         return null;
+    }
+
+    @PostMapping("/copy-trip")
+    public void copyTrip(@RequestBody TripEntity trip) throws Exception {
+        tripService.createTripCopy(trip);
     }
 
     @GetMapping("/number-of-trips/{userName}")

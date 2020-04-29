@@ -3,6 +3,7 @@ package com.codecool.apigateway.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -55,6 +56,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/logout").permitAll()
                 .antMatchers("/signup").permitAll()
+                .antMatchers(HttpMethod.GET,"/user/allusers").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/user/delete").hasRole("ADMIN")
                 .antMatchers("/trip/recommended").permitAll()
                 .antMatchers("/trip/in-progress").authenticated()
                 .antMatchers("/trip/completed").authenticated()
