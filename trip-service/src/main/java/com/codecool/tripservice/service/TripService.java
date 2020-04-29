@@ -17,9 +17,6 @@ public class TripService {
     private TripRepository tripRepository;
 
     @Autowired
-    private UserClientService userClientService;
-
-    @Autowired
     private RestTemplate restTemplate;
 
     @Value("${apigatewayuser.url}")
@@ -37,7 +34,14 @@ public class TripService {
         return restTemplate.getForEntity(baseUrl, String.class).getBody();
     }
 
-    public void addUserToTrip(TripEntity trip) {
+    public void saveNewTripToUser(TripEntity trip) {
         trip.setTripUserId(getCurrentUser());
+        trip.createPlannedDaysForTrip();
+        tripRepository.save(trip);
+    }
+
+    public void createTripCopy(TripEntity trip) {
+        trip.setTripUserId(getCurrentUser());
+        System.out.println(trip.getPlannedDays());
     }
 }

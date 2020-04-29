@@ -8,6 +8,7 @@ import com.codecool.tripservice.entity.TripEntity;
 import com.codecool.tripservice.repository.ActivityRepository;
 import com.codecool.tripservice.repository.PlannedDayRepository;
 import com.codecool.tripservice.repository.TripRepository;
+import com.codecool.tripservice.service.PlannedDaysService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,19 +30,18 @@ public class PlannedDaysController {
     @Autowired
     private ActivityRepository activityRepository;
 
+    @Autowired
+    private PlannedDaysService plannedDaysService;
+
     @GetMapping("/list-all-days")
     public List<PlannedDayEntity> listDaysPlanned(@PathVariable Long tripId) {
-        //System.out.println(plannedDayRepository.listPlannedDaysForTrip(tripId));
         Optional<TripEntity> trip = tripRepository.findById(tripId);
         return trip.map(TripEntity::getPlannedDays).orElse(null);
     }
 
     @PostMapping("/add-activity-to-day/{dayId}")
     public PlannedDayEntity addActivityToDay(@PathVariable Long dayId,@Valid @RequestBody ActivityEntity activity) {
-        Optional<PlannedDayEntity> plannedDay = plannedDayRepository.findById(dayId);
-        plannedDay.ifPresent(activity::setPlannedDay);
-        activityRepository.save(activity);
-        return plannedDay.orElse(null);
+        return plannedDaysService.saveActivityToPlannedDay(dayId, activity);
     }
 
     @PostMapping("/delete-from-activities/{dayId}")
