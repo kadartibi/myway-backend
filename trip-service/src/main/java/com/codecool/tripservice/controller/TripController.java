@@ -50,4 +50,9 @@ public class TripController {
     public void copyTrip(@RequestBody TripEntity trip) throws Exception {
         tripService.createTripCopy(trip);
     }
+
+    @GetMapping("/number-of-trips/{userName}")
+    public int getNumberOfTripsByUser(@PathVariable String userName){
+        return tripRepository.findAllByTripUserId(userName).size();
+    }
 }
