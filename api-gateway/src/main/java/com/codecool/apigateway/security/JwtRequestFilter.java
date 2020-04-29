@@ -16,11 +16,14 @@ import java.util.Arrays;
 import java.util.Optional;
 
 @Component
-@RequiredArgsConstructor
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     public static final String TOKEN = "token";
     private final JwtUtil jwtUtil;
+
+    public JwtRequestFilter(JwtUtil jwtUtil) {
+        this.jwtUtil = jwtUtil;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

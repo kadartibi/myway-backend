@@ -46,4 +46,9 @@ public class TripController {
     public TripEntity updateTrip(@RequestBody TripEntity trip) throws Exception {
         return null;
     }
+
+    @GetMapping("/number-of-trips/{userName}")
+    public int getNumberOfTripsByUser(@PathVariable String userName){
+        return tripRepository.findAllByTripUserId(userName).size();
+    }
 }
