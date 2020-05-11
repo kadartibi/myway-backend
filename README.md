@@ -54,13 +54,13 @@ We spent 4 weeks to build this app:
 ## Outcome
 
 As a result, we can say that we managed to learn and understand:
+- How to work in Spring framework
 - How to use Microservices
 - How to implement JWT token based security in a Gateway Service
 - How to communicate with a React frontend(using tokens)
 
-#
+
 #### [Frontend Github Repository ](https://github.com/kadartibi/myway-frontend)
-#
 
 ## Project Demo
 
