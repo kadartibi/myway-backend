@@ -24,11 +24,15 @@ to see how much you spent or will spend, to help planning.
 - Eureka Server
 - Microservices
 - H2 database
+- Teamviewer
 
-## Project goals/status
+## Project / status
 
 This is a project, we, a team of 3 junior software developers created from scratch, to learn 
 Spring Boot, Spring Security, Microservices.
+
+Mostly we used pair programming in teamviewer, on one host, so commits does not show real data.
+Project contribution was evenly spread among us.
 
 We focused less on the planned features to make sure all of us understand what we have to
 learn here.
@@ -54,4 +58,5 @@ As a result, we can say that we managed to learn and understand:
 - How to communicate with a React frontend(using tokens)
 
 ## Project Demo
+
 
