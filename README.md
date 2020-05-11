@@ -64,4 +64,6 @@ As a result, we can say that we managed to learn and understand:
 
 ## Project Demo
 
+![Main page image](demo-images/myway.png)
+![Project demo](demo-images/myway.gif)
 
