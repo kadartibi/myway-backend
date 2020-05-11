@@ -24,6 +24,7 @@ to see how much you spent or will spend, to help planning.
 - Eureka Server
 - Microservices
 - H2 database
+- React.js(Material-UI)
 - Teamviewer
 
 ## Project / status
@@ -31,7 +32,7 @@ to see how much you spent or will spend, to help planning.
 This is a project, we, a team of 3 junior software developers created from scratch, to learn 
 Spring Boot, Spring Security, Microservices.
 
-Mostly we used pair programming in teamviewer, on one host, so commits does not show real data.
+Mostly we used pair programming with Teamviewer, on one shared host, so commits does not show real data.
 Project contribution was evenly spread among us.
 
 We focused less on the planned features to make sure all of us understand what we have to
@@ -49,13 +50,17 @@ We spent 4 weeks to build this app:
 - 3rd & 4th sprint: recreating/separating the whole app to Microservices (this took longer then expected,
  therefore some of the features were not implemented yet, to focus instead on understanding the concept, 
  and to make it work without bugs)
-  
+
 ## Outcome
 
 As a result, we can say that we managed to learn and understand:
 - How to use Microservices
 - How to implement JWT token based security in a Gateway Service
 - How to communicate with a React frontend(using tokens)
+
+#
+#### [Frontend Github Repository ](https://github.com/kadartibi/myway-frontend)
+#
 
 ## Project Demo
 
