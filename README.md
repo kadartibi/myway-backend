@@ -34,9 +34,9 @@ We focused less on the planned features to make sure all of us understand what w
 learn here.
 
 Unfinished features from plans: 
-- Rating system 70%,
-- Copy a trip to make our own plan from it 70%,
-- Admin page 80%.
+- Rating system 70%
+- Copy a trip to make our own plan from it 70%
+- Admin page 80%
 
 
 We spent 4 weeks to build this app:
@@ -49,7 +49,7 @@ We spent 4 weeks to build this app:
 ## Outcome
 
 As a result, we can say that we managed to learn and understand:
-- How to use Microservices,
+- How to use Microservices
 - How to implement JWT token based security in a Gateway Service
 - How to communicate with a React frontend(using tokens)
 
