@@ -25,26 +25,33 @@ to see how much you spent or will spend, to help planning.
 - Microservices
 - H2 database
 
-## Project status
+## Project goals/status
 
 This is a project, we, a team of 3 junior software developers created from scratch, to learn 
-Spring Boot, Security, Microservices. 
-Project is at 70-75% ready, 
-- Microservices 100%
-- Security almost complete 95%
-- Few user features missing.
+Spring Boot, Spring Security, Microservices.
+
+We focused less on the planned features to make sure all of us understand what we have to
+learn here.
+
+Unfinished features from plans: 
+- Rating system 70%,
+- Copy a trip to make our own plan from it 70%,
+- Admin page 80%.
+
+
 We spent 4 weeks to build this app:
-- 1st in one big monolit
-- 2nd adding security
-- 3rd recreating/separating the whole app to microservices (this took longer then expected, therefore
-  some of the features were not implemented to focus instead on understanding the concept)
+- 1st sprint: build project basics in one big Monolith
+- 2nd sprint: adding security with JWT
+- 3rd & 4th sprint: recreating/separating the whole app to Microservices (this took longer then expected,
+ therefore some of the features were not implemented yet, to focus instead on understanding the concept, 
+ and to make it work without bugs)
   
 ## Outcome
 
 As a result, we can say that we managed to learn and understand:
-- How to use microservices,
+- How to use Microservices,
 - How to implement JWT token based security in a Gateway Service
-- How to communicate with a React fromtend(using tokens)
+- How to communicate with a React frontend(using tokens)
 
 ## Project Demo
 
