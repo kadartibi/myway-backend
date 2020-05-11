@@ -5,11 +5,15 @@ package com.codecool.tripservice.repository;
 import com.codecool.tripservice.entity.TripEntity;
 import com.codecool.tripservice.model.TripUser;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 public interface TripRepository extends JpaRepository<TripEntity, Long> {
+
+    List<TripEntity> findTop5ByOrderByRatings();
 
     List<TripEntity> findTop5ByOrderByRatingDesc();
 

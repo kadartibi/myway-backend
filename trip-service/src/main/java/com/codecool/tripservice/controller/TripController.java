@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Comparator;
 import java.util.List;
 
 @CrossOrigin
@@ -22,8 +23,11 @@ public class TripController {
     private TripService tripService;
 
     @GetMapping("/recommended")
+//    public List<TripEntity> tripsList() {
+//        return tripRepository.findTop5ByOrderByRatingDesc();
+//    }
     public List<TripEntity> tripsList() {
-        return tripRepository.findTop5ByOrderByRatingDesc();
+        return tripRepository.findTop5ByOrderByRatings();
     }
 
     @GetMapping("/in-progress")

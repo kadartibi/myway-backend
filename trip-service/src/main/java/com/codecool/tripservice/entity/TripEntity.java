@@ -58,6 +58,10 @@ public class TripEntity {
 
     private int rating;
 
+    @ElementCollection
+    @Singular
+    private Set<String> ratings;
+
     @EqualsAndHashCode.Exclude
     private String tripUserId;
 
