@@ -46,9 +46,10 @@ public class TripController {
         return null;
     }
 
-    @PostMapping("/copy-trip")
-    public void copyTrip(@RequestBody TripEntity trip) throws Exception {
-        tripService.createTripCopy(trip);
+    @GetMapping("/copy-trip/{tripId}")
+    public void copyTrip(@PathVariable String tripId){
+        Long castTripId = Long.parseLong(tripId);
+        tripService.createTripCopy(castTripId);
     }
 
     @GetMapping("/number-of-trips/{userName}")

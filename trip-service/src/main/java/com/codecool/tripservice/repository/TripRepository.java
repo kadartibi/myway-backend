@@ -3,7 +3,6 @@ package com.codecool.tripservice.repository;
 
 
 import com.codecool.tripservice.entity.TripEntity;
-import com.codecool.tripservice.model.TripUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
@@ -22,6 +21,8 @@ public interface TripRepository extends JpaRepository<TripEntity, Long> {
     List<TripEntity> findAllByTripUserIdAndDateOfReturnGreaterThan(String tripUser, LocalDate time);
 
     List<TripEntity> findAllByTripUserId(String userName);
+
+    List<TripEntity> findTop5ByOrderByIdDesc();
 //
 //    @Query("select p.plannedDays from TripEntity p  ")
 //    List<PlannedDayEntity> getPlannedDays();

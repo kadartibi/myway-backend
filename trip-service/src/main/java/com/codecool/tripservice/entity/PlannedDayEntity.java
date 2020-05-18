@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -31,5 +32,9 @@ public class PlannedDayEntity {
     @OneToMany(mappedBy = "plannedDay", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
-    private Set<ActivityEntity> activities;
+    private Set<ActivityEntity> activities = new HashSet<>();
+
+    public void addSingleActivity(ActivityEntity activityEntity) {
+        activities.add(activityEntity);
+    }
 }
