@@ -33,8 +33,4 @@ public class PlannedDayEntity {
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Set<ActivityEntity> activities = new HashSet<>();
-
-    public void addSingleActivity(ActivityEntity activityEntity) {
-        activities.add(activityEntity);
-    }
 }
