@@ -11,7 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

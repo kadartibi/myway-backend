@@ -54,7 +54,7 @@ public class TripEntity {
     @OneToMany(mappedBy = "trip", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @ToString.Exclude
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    private List<PlannedDayEntity> plannedDays;
+    private List<PlannedDayEntity> plannedDays = new ArrayList<>();
 
     private int rating;
 
