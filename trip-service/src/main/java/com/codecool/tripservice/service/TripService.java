@@ -59,12 +59,12 @@ public class TripService {
         List<PlannedDayEntity> plannedDayEntitiesToCopy = new ArrayList<>();
         TripEntity tripCopy = TripEntity.builder()
                 .tripUserId(getCurrentUser())
-                .travelType("boat")
+                .travelTypes(tripToCopy.getTravelTypes())
                 .country(tripToCopy.getCountry())
                 .dateOfDeparture(tripToCopy.getDateOfDeparture())
                 .dateOfReturn(tripToCopy.getDateOfReturn())
                 .name(tripToCopy.getName())
-                .rating(tripToCopy.getRating())
+                .rating(0)
                 .city(tripToCopy.getCity())
                 .build();
         for (PlannedDayEntity plannedDay : tripToCopy.getPlannedDays()) {
