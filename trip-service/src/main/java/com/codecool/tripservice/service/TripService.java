@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class TripService {
@@ -53,16 +54,19 @@ public class TripService {
         tripRepository.save(trip);
     }
 
-    public void createTripCopy(Long tripId) {
+    public void createTripCopy(Long tripId, LocalDate newStartingDate) {
+        int index = 0;
         TripEntity tripToCopy = tripRepository.findById(tripId).orElse(null);
         assert tripToCopy != null;
+        LocalDate newReturnDate = newStartingDate.plusDays(tripToCopy.getPlannedDays().size());
         List<PlannedDayEntity> plannedDayEntitiesToCopy = new ArrayList<>();
+        List<LocalDate> plannedDaysDates = newStartingDate.datesUntil(newReturnDate).collect(Collectors.toList());
         TripEntity tripCopy = TripEntity.builder()
                 .tripUserId(getCurrentUser())
                 .travelTypes(tripToCopy.getTravelTypes())
                 .country(tripToCopy.getCountry())
-                .dateOfDeparture(tripToCopy.getDateOfDeparture())
-                .dateOfReturn(tripToCopy.getDateOfReturn())
+                .dateOfDeparture(newStartingDate)
+                .dateOfReturn(newReturnDate)
                 .name(tripToCopy.getName())
                 .rating(0)
                 .city(tripToCopy.getCity())
@@ -70,7 +74,7 @@ public class TripService {
         for (PlannedDayEntity plannedDay : tripToCopy.getPlannedDays()) {
             Set<ActivityEntity> activityEntitiesToCopy = new HashSet<>();
             PlannedDayEntity plannedDayCopy = PlannedDayEntity.builder()
-                    .date(plannedDay.getDate())
+                    .date(plannedDaysDates.get(index))
                     .trip(tripCopy)
                     .build();
             if (plannedDay.getActivities() != null) {
@@ -85,6 +89,7 @@ public class TripService {
             }
             plannedDayCopy.setActivities(activityEntitiesToCopy);
             plannedDayEntitiesToCopy.add(plannedDayCopy);
+            index ++;
         }
         tripCopy.setPlannedDays(plannedDayEntitiesToCopy);
         tripRepository.save(tripCopy);
