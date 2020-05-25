@@ -25,12 +25,6 @@ public class TripService {
     private TripRepository tripRepository;
 
     @Autowired
-    private ActivityRepository activityRepository;
-
-    @Autowired
-    private PlannedDayRepository plannedDayRepository;
-
-    @Autowired
     private RestTemplate restTemplate;
 
     @Value("${apigatewayuser.url}")
