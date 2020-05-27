@@ -17,8 +17,6 @@ public class DataInitializer {
 
     private final TripRepository tripRepository;
 
-    private final UserClientService userClientService;
-
     @Bean
     public CommandLineRunner createTrips() {
 

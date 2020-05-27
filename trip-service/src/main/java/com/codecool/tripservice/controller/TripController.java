@@ -1,6 +1,5 @@
 package com.codecool.tripservice.controller;
 
-import com.codecool.tripservice.entity.PlannedDayEntity;
 import com.codecool.tripservice.entity.TripEntity;
 import com.codecool.tripservice.repository.TripRepository;
 import com.codecool.tripservice.service.TripService;
@@ -8,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -26,9 +28,7 @@ public class TripController {
 //    public List<TripEntity> tripsList() {
 //        return tripRepository.findTop5ByOrderByRatingDesc();
 //    }
-    public List<TripEntity> tripsList() {
-        return tripRepository.findTop5ByOrderByRatings();
-    }
+    public List<TripEntity> tripsList() { return tripService.getSortedTripsByRatingsCount(); }
 
     @GetMapping("/in-progress")
     public List<TripEntity> tripsInProgress() {
@@ -50,9 +50,11 @@ public class TripController {
         return null;
     }
 
-    @PostMapping("/copy-trip")
-    public void copyTrip(@RequestBody TripEntity trip) throws Exception {
-        tripService.createTripCopy(trip);
+    @PostMapping("/copy-trip/{tripId}")
+    public void copyTrip(@PathVariable String tripId, @RequestBody Map<String, String> startingDate){
+        LocalDate startingDateForTrip = LocalDate.parse(startingDate.get("date"));
+        Long castTripId = Long.parseLong(tripId);
+        tripService.createTripCopy(castTripId, startingDateForTrip);
     }
 
     @GetMapping("/number-of-trips/{userName}")
