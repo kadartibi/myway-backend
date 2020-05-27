@@ -78,4 +78,8 @@ public class TripEntity {
     public int getRatingsCount(){
         return ratings.size();
     }
+
+    public void saveUserToRatings(String userName) {
+        ratings.add(userName);
+    }
 }

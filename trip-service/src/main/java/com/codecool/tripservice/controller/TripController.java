@@ -61,4 +61,9 @@ public class TripController {
     public int getNumberOfTripsByUser(@PathVariable String userName){
         return tripRepository.findAllByTripUserId(userName).size();
     }
+///trip/recommendTrip/45/user 4
+    @PostMapping("/recommendTrip/{tripId}/{userName}")
+    public String recommendTrip(@PathVariable Long tripId, @PathVariable String userName) {
+        return tripService.recommendTrip(tripId, userName);
+    }
 }

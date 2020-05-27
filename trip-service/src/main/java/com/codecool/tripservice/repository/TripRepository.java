@@ -27,6 +27,23 @@ public interface TripRepository extends JpaRepository<TripEntity, Long> {
     List<TripEntity> findAllByTripUserId(String userName);
 
     List<TripEntity> findTop5ByOrderByIdDesc();
+
+    @Query("SELECT t.tripUserId from TripEntity t")
+    List<String> getUsersList();
+
+//    @Query("UPDATE TripEntity t SET t.ratings = (t.ratings + :userName) WHERE t.id = :tripId")
+//    void saveRecommendation(int tripId, String userName);
+
+    TripEntity getById(Long tripId);
+
+//    @Query("UPDATE TripEntity t SET t = :trip WHERE t.id = :tripId")
+//    void saveUpdatedTrip(TripEntity trip, Long tripId);
+
+//    @Query("UPDATE TripEntity t SET t.ratings = :newRatings where t.id = :tripId")
+//    void saveRecommendation(Set<String> newRatings, Long tripId);
+//
+//    @Query("UPDATE TripEntity_ratings SET ratings = :userName WHERE TripEntity_id = :tripId")
+//    void saveRecommendation(String userName, Long tripId);
 //
 //    @Query("select p.plannedDays from TripEntity p  ")
 //    List<PlannedDayEntity> getPlannedDays();
