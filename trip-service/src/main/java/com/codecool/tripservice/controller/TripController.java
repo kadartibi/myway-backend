@@ -60,10 +60,9 @@ public class TripController {
         return tripRepository.findAllByTripUserId(userName).size();
     }
 
-    @GetMapping("/search")
-    public List<TripEntity> searchTrips(@RequestBody Map<String, String> searchParams){
-        String searchType = searchParams.get("searchType");
-        String searchString = searchParams.get("searchString");
+    @GetMapping("/search/{searchString}&{searchType}")
+    public List<TripEntity> searchTrips(@PathVariable String searchString,@PathVariable String searchType){
+        System.out.println(tripService.searchTrips(searchType, searchString));
         return tripService.searchTrips(searchType, searchString);
 
     }
