@@ -12,4 +12,5 @@ public interface PlannedDayRepository extends JpaRepository<PlannedDayEntity, Lo
     @Query("SELECT p FROM PlannedDayEntity p WHERE p.trip = :id")
     List<PlannedDayEntity> listPlannedDaysForTrip(Long id);
 
+    List<PlannedDayEntity> findTop5ByOrderByIdDesc();
 }
