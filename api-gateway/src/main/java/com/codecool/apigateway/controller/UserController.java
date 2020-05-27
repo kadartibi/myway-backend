@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
@@ -30,7 +29,6 @@ public class UserController {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
     private final TripUserService tripUserService;
-    private String currentUser = "";
     public static final String TOKEN = "token";
 
     @PostMapping("/login")
@@ -41,7 +39,6 @@ public class UserController {
         ));
         String jwtToken = jwtUtil.generateToken(authentication);
         addTokenToCookie(response, jwtToken);
-        currentUser = tripUser.getUsername();
         return ResponseEntity.ok().body(tripUser.getUsername());
     }
 
@@ -54,7 +51,6 @@ public class UserController {
         ));
         String jwtToken = jwtUtil.generateToken(authentication);
         addTokenToCookie(response, jwtToken);
-        currentUser = tripUser.getUsername();
         return ResponseEntity.status(HttpStatus.CREATED).body(tripUser.getUsername());
     }
 
@@ -73,7 +69,6 @@ public class UserController {
     @PostMapping("/logout")
     public ResponseEntity<String> logout(HttpServletResponse response) {
         createLogoutCookie(response);
-        currentUser = "";
         return ResponseEntity.ok().build();
     }
 
@@ -93,15 +88,21 @@ public class UserController {
     public String getCurrentUsername(@PathVariable String jwtToken) {
         UsernamePasswordAuthenticationToken userToken = jwtUtil
                 .validateTokenAndExtractUserSpringToken(jwtToken);
-        return userToken.getName();
+        return userToken == null ? "" : userToken.getName();
     }
 
     @GetMapping("/current-user-object")
-    public TripUser getCurrentUserObject() {
-        if (currentUser.equals("")) {
-            return null;
+    public TripUser getCurrentUserObject(HttpServletRequest request) {
+        Optional<Cookie> jwtToken =
+                Arrays.stream(Optional.ofNullable(request.getCookies()).orElse(new Cookie[]{}))
+                        .filter(cookie -> cookie.getName().equals(TOKEN))
+                        .findFirst();
+        if (jwtToken.isPresent()) {
+            UsernamePasswordAuthenticationToken userToken = jwtUtil
+                    .validateTokenAndExtractUserSpringToken(jwtToken.get().getValue());
+            return tripUserService.findById(userToken.getName());
         }
-        return tripUserService.findById(currentUser);
+        return null;
     }
 
 }
