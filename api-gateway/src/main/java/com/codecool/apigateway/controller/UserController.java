@@ -14,8 +14,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.Optional;
 
 @CrossOrigin
@@ -28,9 +31,10 @@ public class UserController {
     private final JwtUtil jwtUtil;
     private final TripUserService tripUserService;
     private String currentUser = "";
+    public static final String TOKEN = "token";
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody UserCredentials tripUser, HttpServletResponse response) {
+    public ResponseEntity<String> login(@RequestBody UserCredentials tripUser, HttpServletResponse response, HttpServletRequest request) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 tripUser.getUsername(),
                 tripUser.getPassword()
@@ -85,9 +89,11 @@ public class UserController {
         response.addHeader("Set-Cookie", cookie.toString());
     }
 
-    @GetMapping("/current-user")
-    public String getCurrentUsername() {
-        return currentUser;
+    @GetMapping("/current-user/{jwtToken}")
+    public String getCurrentUsername(@PathVariable String jwtToken) {
+        UsernamePasswordAuthenticationToken userToken = jwtUtil
+                .validateTokenAndExtractUserSpringToken(jwtToken);
+        return userToken.getName();
     }
 
     @GetMapping("/current-user-object")
