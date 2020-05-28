@@ -1,5 +1,6 @@
 package com.codecool.tripservice.service;
 
+import com.codecool.tripservice.entity.ActivityEntity;
 import com.codecool.tripservice.entity.TripEntity;
 import com.codecool.tripservice.repository.TripRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,9 +26,10 @@ public class DataInitializer {
                     .name("Spanish beaches")
                     .country("Spain")
                     .travelType("Bicycle")
-                    .rating("admin")
+                    .travelType("Plane")
+                    .ratings(Arrays.asList("admin", "user1"))
                     .dateOfDeparture(LocalDate.of(2019, 6, 20))
-                    .dateOfReturn(LocalDate.of(2019, 6, 30))
+                    .dateOfReturn(LocalDate.of(2019, 6, 23))
                     .tripUserId("user")
                     .build();
 
@@ -38,7 +40,7 @@ public class DataInitializer {
                     .travelType("Plane")
                     .rating("user")
                     .dateOfDeparture(LocalDate.of(2020, 1, 15))
-                    .dateOfReturn(LocalDate.of(2020, 1, 24))
+                    .dateOfReturn(LocalDate.of(2020, 1, 22))
                     .tripUserId("admin")
                     .build();
 
@@ -47,7 +49,7 @@ public class DataInitializer {
                     .country("Hungary")
                     .travelType("Own car")
                     .dateOfDeparture(LocalDate.of(2019, 11, 21))
-                    .dateOfReturn(LocalDate.of(2019, 11, 30))
+                    .dateOfReturn(LocalDate.of(2019, 11, 24))
                     .tripUserId("admin")
                     .build();
 
@@ -57,7 +59,7 @@ public class DataInitializer {
                     .travelType("Bicycle")
                     .travelType("Train")
                     .dateOfDeparture(LocalDate.of(2020, 2, 10))
-                    .dateOfReturn(LocalDate.of(2020, 2, 18))
+                    .dateOfReturn(LocalDate.of(2020, 2, 13))
                     .tripUserId("user")
                     .build();
 
@@ -66,7 +68,7 @@ public class DataInitializer {
                     .country("Germany")
                     .travelType("Own car")
                     .dateOfDeparture(LocalDate.of(2020, 2, 2))
-                    .dateOfReturn(LocalDate.of(2020, 2, 10))
+                    .dateOfReturn(LocalDate.of(2020, 2, 5))
                     .tripUserId("admin")
                     .build();
 
@@ -77,11 +79,48 @@ public class DataInitializer {
                     .travelType("Train")
                     .travelType("Plane")
                     .dateOfDeparture(LocalDate.of(2020, 10, 20))
-                    .dateOfReturn(LocalDate.of(2020, 10, 30))
+                    .dateOfReturn(LocalDate.of(2020, 10, 25))
                     .tripUserId("user")
                     .build();
 
-            List<TripEntity> trips = Arrays.asList(trip1, trip2, trip3, trip4, trip5, trip6);
+            TripEntity trip7 = TripEntity.builder()
+                    .name("The True Paradise")
+                    .country("Spain")
+                    .city("Menorca")
+                    .travelType("Walk")
+                    .travelType("RentalCar")
+                    .travelType("Plane")
+                    .rating("user")
+                    .dateOfDeparture(LocalDate.of(2019, 7, 20))
+                    .dateOfReturn(LocalDate.of(2019, 7, 25))
+                    .tripUserId("user1")
+                    .build();
+
+            TripEntity trip8 = TripEntity.builder()
+                    .name("Trip to the Freezer")
+                    .country("Russia")
+                    .city("Moscow")
+                    .travelType("RentalCar")
+                    .travelType("Train")
+                    .travelType("Plane")
+                    .dateOfDeparture(LocalDate.of(2020, 1, 5))
+                    .dateOfReturn(LocalDate.of(2020, 1, 8))
+                    .tripUserId("user1")
+                    .build();
+
+            TripEntity trip9 = TripEntity.builder()
+                    .name("Into the contryside")
+                    .country("Hungary")
+                    .city("Komloska")
+                    .travelType("Bus")
+                    .travelType("Walk")
+                    .travelType("Bicycle")
+                    .dateOfDeparture(LocalDate.of(2020, 4, 9))
+                    .dateOfReturn(LocalDate.of(2020, 4, 12))
+                    .tripUserId("user1")
+                    .build();
+
+            List<TripEntity> trips = Arrays.asList(trip1, trip2, trip3, trip4, trip5, trip6, trip7, trip8, trip9);
             for (TripEntity trip: trips) {
                 trip.setRating();
                 trip.createPlannedDaysForTrip();
