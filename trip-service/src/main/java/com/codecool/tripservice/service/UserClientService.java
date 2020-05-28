@@ -34,17 +34,6 @@ public class UserClientService {
     }
 
     public List<String> getAllUserNames() {
-        return restTemplate.getForEntity(baseUrl + "all-user-names", List.class).getBody();
+        return restTemplate.getForEntity(baseUrl + "all-user-names/", List.class).getBody();
     }
-
-//    public List<Video> getAllVideos() {
-//        ObjectMapper mapper = new ObjectMapper();
-//        List videosFromService = restTemplate.getForEntity(baseUrl + "/list-all", List.class).getBody();
-//        List<Video> videos = new ArrayList<>();
-//        assert videosFromService != null;
-//        for (Object each : videosFromService) {
-//            videos.add(mapper.convertValue(each, Video.class));
-//        }
-//        return videos;
-//    }
 }
