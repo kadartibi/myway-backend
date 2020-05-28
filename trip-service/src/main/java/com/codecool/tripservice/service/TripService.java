@@ -3,14 +3,13 @@ package com.codecool.tripservice.service;
 import com.codecool.tripservice.entity.ActivityEntity;
 import com.codecool.tripservice.entity.PlannedDayEntity;
 import com.codecool.tripservice.entity.TripEntity;
-import com.codecool.tripservice.repository.ActivityRepository;
-import com.codecool.tripservice.repository.PlannedDayRepository;
 import com.codecool.tripservice.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -22,19 +21,13 @@ public class TripService {
     private TripRepository tripRepository;
 
     @Autowired
-    private ActivityRepository activityRepository;
-
-    @Autowired
-    private PlannedDayRepository plannedDayRepository;
-
-    @Autowired
     private RestTemplate restTemplate;
 
     @Value("${apigatewayuser.url}")
     private String baseUrl;
 
-    public List<TripEntity> getInProgressTripsByUser() {
-        return tripRepository.findAllByTripUserIdAndDateOfReturnGreaterThan(getCurrentUser(), LocalDate.now());
+    public List<TripEntity> getInProgressTripsByUser(HttpServletRequest request) {
+        return tripRepository.findAllByTripUserIdAndDateOfReturnGreaterThan(getCurrentUser(request), LocalDate.now());
     }
 //
 //    public List<TripEntity> getSortedTripsByRatingsCount() {
@@ -43,21 +36,22 @@ public class TripService {
 //        return tripsToSort;
 //    }
 
-    public List<TripEntity> getCompletedTripsByUser() {
-        return tripRepository.findAllByTripUserIdAndDateOfReturnLessThan(getCurrentUser(), LocalDate.now());
+    public List<TripEntity> getCompletedTripsByUser(HttpServletRequest request) {
+        return tripRepository.findAllByTripUserIdAndDateOfReturnLessThan(getCurrentUser(request), LocalDate.now());
     }
 
-    private String getCurrentUser() {
-        return restTemplate.getForEntity(baseUrl, String.class).getBody();
+    private String getCurrentUser(HttpServletRequest request) {
+        String jwtToken = request.getCookies()[0].getValue();
+        return restTemplate.getForEntity(baseUrl + jwtToken, String.class).getBody();
     }
 
-    public void saveNewTripToUser(TripEntity trip) {
-        trip.setTripUserId(getCurrentUser());
+    public void saveNewTripToUser(TripEntity trip, HttpServletRequest request) {
+        trip.setTripUserId(getCurrentUser(request));
         trip.createPlannedDaysForTrip();
         tripRepository.save(trip);
     }
 
-    public void createTripCopy(Long tripId, LocalDate newStartingDate) {
+    public void createTripCopy(Long tripId, LocalDate newStartingDate, HttpServletRequest request) {
         int index = 0;
         TripEntity tripToCopy = tripRepository.findById(tripId).orElse(null);
         assert tripToCopy != null;
@@ -65,7 +59,7 @@ public class TripService {
         List<PlannedDayEntity> plannedDayEntitiesToCopy = new ArrayList<>();
         List<LocalDate> plannedDaysDates = newStartingDate.datesUntil(newReturnDate).collect(Collectors.toList());
         TripEntity tripCopy = TripEntity.builder()
-                .tripUserId(getCurrentUser())
+                .tripUserId(getCurrentUser(request))
                 .travelTypes(tripToCopy.getTravelTypes())
                 .country(tripToCopy.getCountry())
                 .dateOfDeparture(newStartingDate)
