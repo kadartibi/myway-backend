@@ -86,4 +86,18 @@ public class TripService {
         tripRepository.save(tripCopy);
     }
 
+    public List<TripEntity> searchTrips(String searchType, String searchString) {
+        //Search by name
+        if (searchType.equals("name")) {
+            return tripRepository.findAllByNameContaining(searchString);
+        }
+        //Search by country
+        else if(searchType.equals("country")) {
+            return tripRepository.findAllByCountryContaining(searchString);
+        }
+        //Search by city
+        else {
+            return tripRepository.findAllByCityContaining(searchString);
+        }
+    }
 }

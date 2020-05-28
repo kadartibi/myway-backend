@@ -60,4 +60,11 @@ public class TripController {
     public int getNumberOfTripsByUser(@PathVariable String userName){
         return tripRepository.findAllByTripUserId(userName).size();
     }
+
+    @GetMapping("/search/{searchString}&{searchType}")
+    public List<TripEntity> searchTrips(@PathVariable String searchString,@PathVariable String searchType){
+        System.out.println(tripService.searchTrips(searchType, searchString));
+        return tripService.searchTrips(searchType, searchString);
+
+    }
 }
