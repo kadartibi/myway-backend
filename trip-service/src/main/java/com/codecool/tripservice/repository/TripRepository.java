@@ -23,4 +23,12 @@ public interface TripRepository extends JpaRepository<TripEntity, Long> {
     List<TripEntity> findAllByTripUserId(String userName);
 
     TripEntity getById(Long tripId);
+
+    List<TripEntity> findTop5ByOrderByIdDesc();
+
+    List<TripEntity> findAllByCityContaining(String city);
+
+    List<TripEntity> findAllByCountryContaining(String country);
+
+    List<TripEntity> findAllByNameContaining(String name);
 }

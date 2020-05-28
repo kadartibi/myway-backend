@@ -34,12 +34,6 @@ public class TripService {
     public List<TripEntity> getInProgressTripsByUser(HttpServletRequest request) {
         return tripRepository.findAllByTripUserIdAndDateOfReturnGreaterThan(getCurrentUser(request), LocalDate.now());
     }
-//
-//    public List<TripEntity> getSortedTripsByRatingsCount() {
-//        List<TripEntity> tripsToSort = new ArrayList<>(tripRepository.findTop5ByOrderByRating());
-//        tripsToSort.sort(Comparator.comparing(TripEntity::getRatingsCount).reversed());
-//        return tripsToSort;
-//    }
 
     public List<TripEntity> getCompletedTripsByUser(HttpServletRequest request) {
         return tripRepository.findAllByTripUserIdAndDateOfReturnLessThan(getCurrentUser(request), LocalDate.now());
@@ -47,7 +41,6 @@ public class TripService {
 
     private String getCurrentUser(HttpServletRequest request) {
         String jwtToken = request.getCookies()[0].getValue();
-        System.out.println(jwtToken);
         return restTemplate.getForEntity(baseUrl + jwtToken, String.class).getBody();
     }
 
@@ -107,5 +100,19 @@ public class TripService {
             return tripRepository.findTop5ByOrderByRatingDescNameDesc();
         }
         return null;
+    }
+    public List<TripEntity> searchTrips(String searchType, String searchString) {
+        //Search by name
+        if (searchType.equals("name")) {
+            return tripRepository.findAllByNameContaining(searchString);
+        }
+        //Search by country
+        else if(searchType.equals("country")) {
+            return tripRepository.findAllByCountryContaining(searchString);
+        }
+        //Search by city
+        else {
+            return tripRepository.findAllByCityContaining(searchString);
+        }
     }
 }

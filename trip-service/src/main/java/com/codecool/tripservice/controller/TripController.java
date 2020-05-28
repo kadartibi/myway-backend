@@ -59,6 +59,13 @@ public class TripController {
         return tripRepository.findAllByTripUserId(userName).size();
     }
 
+    @GetMapping("/search/{searchString}&{searchType}")
+    public List<TripEntity> searchTrips(@PathVariable String searchString,@PathVariable String searchType){
+        System.out.println(tripService.searchTrips(searchType, searchString));
+        return tripService.searchTrips(searchType, searchString);
+
+    }
+
     @PostMapping("/recommendTrip/{tripId}/{userName}")
     public List<TripEntity> recommendTrip(@PathVariable Long tripId, @PathVariable String userName) {
         return tripService.recommendTrip(tripId, userName);
