@@ -61,7 +61,6 @@ public class TripController {
 
     @GetMapping("/search/{searchString}&{searchType}")
     public List<TripEntity> searchTrips(@PathVariable String searchString,@PathVariable String searchType){
-        System.out.println(tripService.searchTrips(searchType, searchString));
         return tripService.searchTrips(searchType, searchString);
 
     }
