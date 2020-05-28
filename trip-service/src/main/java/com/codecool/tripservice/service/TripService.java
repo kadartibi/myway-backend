@@ -36,12 +36,12 @@ public class TripService {
     public List<TripEntity> getInProgressTripsByUser() {
         return tripRepository.findAllByTripUserIdAndDateOfReturnGreaterThan(getCurrentUser(), LocalDate.now());
     }
-
-    public List<TripEntity> getSortedTripsByRatingsCount() {
-        List<TripEntity> tripsToSort = new ArrayList<>(tripRepository.findTop5ByOrderByRatings());
-        tripsToSort.sort(Comparator.comparing(TripEntity::getRatingsCount).reversed());
-        return tripsToSort;
-    }
+//
+//    public List<TripEntity> getSortedTripsByRatingsCount() {
+//        List<TripEntity> tripsToSort = new ArrayList<>(tripRepository.findTop5ByOrderByRating());
+//        tripsToSort.sort(Comparator.comparing(TripEntity::getRatingsCount).reversed());
+//        return tripsToSort;
+//    }
 
     public List<TripEntity> getCompletedTripsByUser() {
         return tripRepository.findAllByTripUserIdAndDateOfReturnLessThan(getCurrentUser(), LocalDate.now());
@@ -98,22 +98,14 @@ public class TripService {
         tripRepository.save(tripCopy);
     }
 
-    public String recommendTrip(Long tripId, String userName) {
+    public List<TripEntity> recommendTrip(Long tripId, String userName) {
         List<String> users = new ArrayList<>(tripRepository.getUsersList());
         if (users.contains(userName)) {
             TripEntity tripToUpdate = tripRepository.getById(tripId);
-            tripRepository.delete(tripToUpdate);
             tripToUpdate.saveUserToRatings(userName);
-            tripRepository.saveAndFlush(tripToUpdate);
-//            Set<String> ratingsToUpdate = tripToUpdate.getRatings();
-//            System.out.println(ratingsToUpdate);
-//            ratingsToUpdate.add(userName);
-//            System.out.println(ratingsToUpdate);
-//            tripRepository.saveRecommendation(userName, tripId);
-//            tripToUpdate.saveUserToRatings(userName);
-//            tripRepository.saveUpdatedTrip(tripToUpdate, tripId);
-            return "Recommendation saved!";
+            tripRepository.save(tripToUpdate);
+            return tripRepository.findTop5ByOrderByRatingDesc();
         }
-        return "Invalid recommendation";
+        return null;
     }
 }

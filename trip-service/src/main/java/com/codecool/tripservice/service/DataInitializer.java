@@ -46,7 +46,6 @@ public class DataInitializer {
                     .name("Hungarian retro")
                     .country("Hungary")
                     .travelType("Own car")
-                    .ratings(Arrays.asList("admin", "user"))
                     .dateOfDeparture(LocalDate.of(2019, 11, 21))
                     .dateOfReturn(LocalDate.of(2019, 11, 30))
                     .tripUserId("admin")
@@ -59,7 +58,7 @@ public class DataInitializer {
                     .travelType("Train")
                     .dateOfDeparture(LocalDate.of(2020, 2, 10))
                     .dateOfReturn(LocalDate.of(2020, 2, 18))
-                    .tripUserId("admin")
+                    .tripUserId("user")
                     .build();
 
             TripEntity trip5 = TripEntity.builder()
@@ -84,6 +83,7 @@ public class DataInitializer {
 
             List<TripEntity> trips = Arrays.asList(trip1, trip2, trip3, trip4, trip5, trip6);
             for (TripEntity trip: trips) {
+                trip.setRating();
                 trip.createPlannedDaysForTrip();
             }
             tripRepository.saveAll(trips);

@@ -25,10 +25,7 @@ public class TripController {
     private TripService tripService;
 
     @GetMapping("/recommended")
-//    public List<TripEntity> tripsList() {
-//        return tripRepository.findTop5ByOrderByRatingDesc();
-//    }
-    public List<TripEntity> tripsList() { return tripService.getSortedTripsByRatingsCount(); }
+    public List<TripEntity> tripsList() { return tripRepository.findTop5ByOrderByRatingDesc(); }
 
     @GetMapping("/in-progress")
     public List<TripEntity> tripsInProgress() {
@@ -61,9 +58,9 @@ public class TripController {
     public int getNumberOfTripsByUser(@PathVariable String userName){
         return tripRepository.findAllByTripUserId(userName).size();
     }
-///trip/recommendTrip/45/user 4
+
     @PostMapping("/recommendTrip/{tripId}/{userName}")
-    public String recommendTrip(@PathVariable Long tripId, @PathVariable String userName) {
+    public List<TripEntity> recommendTrip(@PathVariable Long tripId, @PathVariable String userName) {
         return tripService.recommendTrip(tripId, userName);
     }
 }

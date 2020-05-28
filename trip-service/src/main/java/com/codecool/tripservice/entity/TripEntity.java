@@ -9,9 +9,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Data
 @NoArgsConstructor
@@ -60,9 +62,9 @@ public class TripEntity {
 
     @ElementCollection
     @Singular
+    @EqualsAndHashCode.Exclude
     private Set<String> ratings;
 
-    @EqualsAndHashCode.Exclude
     private String tripUserId;
 
     public void createPlannedDaysForTrip() {
@@ -75,11 +77,12 @@ public class TripEntity {
         this.setPlannedDays(plannedDayEntitiesPreparation);
     }
 
-    public int getRatingsCount(){
-        return ratings.size();
+    public void setRating() {
+        rating = ratings.size();
     }
 
     public void saveUserToRatings(String userName) {
         ratings.add(userName);
+        setRating();
     }
 }
