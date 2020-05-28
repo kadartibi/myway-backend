@@ -4,6 +4,8 @@ import com.codecool.tripservice.entity.ActivityEntity;
 import com.codecool.tripservice.entity.PlannedDayEntity;
 import com.codecool.tripservice.entity.TripEntity;
 import com.codecool.tripservice.repository.TripRepository;
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,9 @@ public class TripService {
 
     @Autowired
     private TripRepository tripRepository;
+
+    @Autowired
+    private UserClientService userClientService;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -42,6 +47,7 @@ public class TripService {
 
     private String getCurrentUser(HttpServletRequest request) {
         String jwtToken = request.getCookies()[0].getValue();
+        System.out.println(jwtToken);
         return restTemplate.getForEntity(baseUrl + jwtToken, String.class).getBody();
     }
 
@@ -93,12 +99,12 @@ public class TripService {
     }
 
     public List<TripEntity> recommendTrip(Long tripId, String userName) {
-        List<String> users = new ArrayList<>(tripRepository.getUsersList());
+        List<String> users = userClientService.getAllUserNames();
         if (users.contains(userName)) {
             TripEntity tripToUpdate = tripRepository.getById(tripId);
             tripToUpdate.saveUserToRatings(userName);
             tripRepository.save(tripToUpdate);
-            return tripRepository.findTop5ByOrderByRatingDesc();
+            return tripRepository.findTop5ByOrderByRatingDescNameDesc();
         }
         return null;
     }

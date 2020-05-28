@@ -25,7 +25,7 @@ public class TripController {
     private TripService tripService;
 
     @GetMapping("/recommended")
-    public List<TripEntity> tripsList() { return tripRepository.findTop5ByOrderByRatingDesc(); }
+    public List<TripEntity> tripsList() { return tripRepository.findTop5ByOrderByRatingDescNameDesc(); }
 
     @GetMapping("/in-progress")
     public List<TripEntity> tripsInProgress(HttpServletRequest request) {

@@ -12,7 +12,7 @@ import java.util.Set;
 
 public interface TripRepository extends JpaRepository<TripEntity, Long> {
 
-    List<TripEntity> findTop5ByOrderByRatingDesc();
+    List<TripEntity> findTop5ByOrderByRatingDescNameDesc();
 
     List<TripEntity> findAllByOrderByIdDesc();
 
@@ -21,9 +21,6 @@ public interface TripRepository extends JpaRepository<TripEntity, Long> {
     List<TripEntity> findAllByTripUserIdAndDateOfReturnGreaterThan(String tripUser, LocalDate time);
 
     List<TripEntity> findAllByTripUserId(String userName);
-
-    @Query("SELECT t.tripUserId from TripEntity t")
-    List<String> getUsersList();
 
     TripEntity getById(Long tripId);
 }
