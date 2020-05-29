@@ -1,6 +1,7 @@
 package com.codecool.tripservice.service;
 
 import com.codecool.tripservice.entity.ActivityEntity;
+import com.codecool.tripservice.entity.PlannedDayEntity;
 import com.codecool.tripservice.entity.TripEntity;
 import com.codecool.tripservice.repository.TripRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,9 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Configuration
 @RequiredArgsConstructor
@@ -124,8 +125,29 @@ public class DataInitializer {
             for (TripEntity trip: trips) {
                 trip.setRating();
                 trip.createPlannedDaysForTrip();
+                for (PlannedDayEntity plannedDay : trip.getPlannedDays()) {
+                    plannedDay.setActivities(activityCreator());
+                }
             }
             tripRepository.saveAll(trips);
         };
+    }
+
+    private HashSet<ActivityEntity> activityCreator() {
+        HashSet<ActivityEntity> activityList = new HashSet<>();
+        List<String> howList = Arrays.asList("going to ", "visit ", "travel to ", "checkout ");
+        List<String> whatList = Arrays.asList("museum", "pub", "cathedral", "disco", "beach", "statue");
+        double newDouble = new Random().nextInt(10) + 1;
+        for (int i = 0; i < 3; i++) {
+            String newDescription = howList.get(new Random().nextInt(howList.size())) +
+                    whatList.get(new Random().nextInt(whatList.size()));
+            ActivityEntity activity = ActivityEntity.builder()
+                                                    .description(newDescription)
+                                                    .price(newDouble)
+                                                    .build();
+            activityList.add(activity);
+            System.out.println(activity);
+        }
+        return activityList;
     }
 }
