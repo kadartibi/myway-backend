@@ -147,7 +147,6 @@ public class DataInitializer {
                                                     .plannedDay(plannedDay)
                                                     .build();
             activityList.add(activity);
-            System.out.println(activity);
         }
         return activityList;
     }
