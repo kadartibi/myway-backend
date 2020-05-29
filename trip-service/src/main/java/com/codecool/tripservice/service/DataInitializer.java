@@ -126,14 +126,14 @@ public class DataInitializer {
                 trip.setRating();
                 trip.createPlannedDaysForTrip();
                 for (PlannedDayEntity plannedDay : trip.getPlannedDays()) {
-                    plannedDay.setActivities(activityCreator());
+                    plannedDay.setActivities(activityCreator(plannedDay));
                 }
             }
             tripRepository.saveAll(trips);
         };
     }
 
-    private HashSet<ActivityEntity> activityCreator() {
+    private HashSet<ActivityEntity> activityCreator(PlannedDayEntity plannedDay) {
         HashSet<ActivityEntity> activityList = new HashSet<>();
         List<String> howList = Arrays.asList("going to ", "visit ", "travel to ", "checkout ");
         List<String> whatList = Arrays.asList("museum", "pub", "cathedral", "disco", "beach", "statue");
@@ -144,6 +144,7 @@ public class DataInitializer {
             ActivityEntity activity = ActivityEntity.builder()
                                                     .description(newDescription)
                                                     .price(newDouble)
+                                                    .plannedDay(plannedDay)
                                                     .build();
             activityList.add(activity);
             System.out.println(activity);
