@@ -23,6 +23,8 @@ public class DataInitializer {
                     "admin@admin.com",Set.of(Role.USER, Role.ADMIN));
             TripUser user = userService.register("user", "user", "Jakab", "Gipsz",
                     "user@user.com");
+            TripUser user1 = userService.register("user1", "user1", "Kolompar", "Lakatos",
+                    "user1@user.com");
         };
     }
 }

@@ -15,8 +15,4 @@ public class UserCredentials {
     private String lastName;
     private String email;
 
-    public UserCredentials(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 }

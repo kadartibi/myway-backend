@@ -63,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/trip/completed").authenticated()
                 .antMatchers("/trip/add").authenticated()
                 .antMatchers("/trip/update").authenticated()
+                .antMatchers("/trip/recommendTrip").authenticated()
                 .antMatchers("/trip/{tripId:[\\d+]}/list-all-days").permitAll()
                 .antMatchers("/trip/{tripId:[\\d+]}/add-activity-to-day/{dayId:[\\d+]}").authenticated()
                 .antMatchers("/trip/{tripId:[\\d+]}/delete-from-activities/{dayId:[\\d+]}").authenticated()

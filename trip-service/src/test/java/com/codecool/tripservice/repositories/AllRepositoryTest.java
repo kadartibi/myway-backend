@@ -206,7 +206,7 @@ public class AllRepositoryTest {
         List<TripEntity> trips = Arrays.asList(trip1, trip2, trip3, trip4, trip5, trip6);
         tripRepository.saveAll(trips);
 
-        assertThat(tripRepository.findTop5ByOrderByRatingDesc())
+        assertThat(tripRepository.findTop5ByOrderByRatingDescNameDesc())
                 .hasSize(5)
                 .startsWith(trip2)
                 .doesNotContain(trip1);

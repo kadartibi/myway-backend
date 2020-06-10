@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserClientService {
 
@@ -30,4 +33,7 @@ public class UserClientService {
         return tripUser;
     }
 
+    public List<String> getAllUserNames() {
+        return restTemplate.getForEntity(baseUrl + "all-user-names/", List.class).getBody();
+    }
 }

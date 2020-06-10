@@ -44,4 +44,9 @@ public class UserController {
     public List<TripUser> getAllUser(){
         return tripUserRepository.findAll();
     }
+
+    @GetMapping("/all-user-names")
+    public List<String> getAllUserNames() {
+        return tripUserRepository.getAllUserNames();
+    }
 }
