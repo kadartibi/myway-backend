@@ -14,6 +14,8 @@ to see how much you spent or will spend, to help planning.
 - Check trips that are in progress or will be in the future
 - Separate page to see trips from past
 - Admin page to manage users
+- Copy a selected trip to plan our own trip in the future
+- Recommend other's trips if we like them
 
 ## Technologies Used
 
@@ -34,15 +36,6 @@ Spring Boot, Spring Security, Microservices.
 
 Mostly we used pair programming with Teamviewer, on one shared host, so commits does not show real data.
 Project contribution was evenly spread among us.
-
-We focused less on the planned features to make sure all of us understand what we have to
-learn here.
-
-Unfinished features from plans: 
-- Rating system 70%
-- Copy a trip to make our own plan from it 70%
-- Admin page 80%
-
 
 We spent 4 weeks to build this app:
 - 1st sprint: build project basics in one big Monolith
